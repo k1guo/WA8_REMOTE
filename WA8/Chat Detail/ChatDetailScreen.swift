@@ -76,10 +76,10 @@ class ChatDetailScreen: UIView {
     func initConstraints(){
         NSLayoutConstraint.activate([
             
-            ChatDetailTableView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 32),
-            ChatDetailTableView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 8),
-            ChatDetailTableView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -8),
-            ChatDetailTableView.bottomAnchor.constraint(equalTo: bottomAddView.topAnchor,constant: -8),
+//            ChatDetailTableView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 32),
+//            ChatDetailTableView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 8),
+//            ChatDetailTableView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -8),
+//            ChatDetailTableView.bottomAnchor.constraint(equalTo: bottomAddView.topAnchor,constant: -8),
        
             bottomAddView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor,constant: -8),
             bottomAddView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 8),

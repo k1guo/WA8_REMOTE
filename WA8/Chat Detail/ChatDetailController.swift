@@ -35,12 +35,12 @@ class ChatDetailController: UIViewController {
         
         title = " chat message page"
         
-        chatScreen.ChatDetailTableView.delegate = self
-        chatScreen.ChatDetailTableView.dataSource = self
-        
+//        chatScreen.ChatDetailTableView.delegate = self
+//        chatScreen.ChatDetailTableView.dataSource = self
+//
         //MARK: removing the separator line...
-        chatScreen.ChatDetailTableView.separatorStyle = .none
-        
+//        chatScreen.ChatDetailTableView.separatorStyle = .none
+//        
         chatScreen.buttonSent.addTarget(self, action: #selector(onSentButtonTapped), for: .touchUpInside)
     }
     
@@ -65,16 +65,16 @@ class ChatDetailController: UIViewController {
                       for document in querySnapshot!.documents {
                         
                           do{
-                              let info  = try document.data(as: ChatMessage.self)
-                              self.ChatSession.append(info)
+//                              let info  = try document.data(as: ChatMessage.self)
+//                              self.ChatSession.append(info)
                            
                           }catch{
                               print(error)
                           }
                     }
                       
-                      print("print the contacts list     !")
-                      self.mainScreen.tableViewChatLists.reloadData()
+//                      print("print the contacts list     !")
+//                      self.chatScreen.tableViewChatLists.reloadData()
                   }
                 }
    
