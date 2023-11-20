@@ -20,6 +20,8 @@ class MainViewController: UIViewController {
     
     let database = Firestore.firestore()
     
+    var here:String?
+    
     var handleAuth: AuthStateDidChangeListenerHandle?
     
     var currentUser:FirebaseAuth.User?
