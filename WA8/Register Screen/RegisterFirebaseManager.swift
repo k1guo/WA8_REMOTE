@@ -19,7 +19,11 @@ extension RegisterViewController{
            let password = registerScreen.textFieldPassword.text,
            let reEnterPassword = registerScreen.textFieldVerifyPassword.text{
             
-//            login screen 部分的valid enter还没有写
+            //            login screen 部分的valid enter还没有写
+            if(password != reEnterPassword){
+            showAlertText(text: "Two password not match!")
+            }
+            //W1988445
             if isValidEmail(email){
                 Auth.auth().createUser(withEmail: email, password: password, completion: {result, error in
                     if error == nil{
@@ -90,6 +94,7 @@ extension RegisterViewController{
         let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailPred.evaluate(with: email)
     }
+    
     
     func showAlertText(text:String){
         let alert = UIAlertController(

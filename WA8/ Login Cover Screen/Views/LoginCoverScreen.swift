@@ -77,6 +77,7 @@ class LoginCoverScreen: UIView {
     func setupButtonLogin(){
         buttonLogin = UIButton(type: .system)
         buttonLogin.setTitle("Login", for: .normal)
+        buttonLogin.titleLabel?.font = .boldSystemFont(ofSize: 21)
         buttonLogin.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(buttonLogin)
     }
@@ -109,9 +110,9 @@ class LoginCoverScreen: UIView {
             buttonLogin.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
             
             registerLabel.topAnchor.constraint(equalTo: buttonLogin.bottomAnchor,constant: 52),
-            registerLabel.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor,constant: 32),
+            registerLabel.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor,constant: 58),
             
-            buttonSignup.topAnchor.constraint(equalTo: buttonLogin.bottomAnchor,constant: 52),
+            buttonSignup.topAnchor.constraint(equalTo: buttonLogin.bottomAnchor,constant: 46),
             buttonSignup.leadingAnchor.constraint(equalTo: registerLabel.trailingAnchor,constant: 15)
             
         ])
