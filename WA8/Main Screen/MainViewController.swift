@@ -59,6 +59,7 @@ class MainViewController: UIViewController {
             }else{
                 print("user not empty")
                 self.currentUser = user
+                
 //                这个是现在登录的这个用户的名字
 //                print(self.currentUser?.displayName!)
                     
@@ -140,9 +141,10 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource{
                         }
                     }
                     
-//                    let chatScreen = ChatDetailController()
-//                    chatScreen.chatIdentifier=self.chatIdentifier
-//                    self.navigationController?.pushViewController(chatScreen, animated: true)
+                    let chatScreen = ChatDetailController()
+                    chatScreen.chatIdentifier=chatIdentifier
+                    chatScreen.currentUser = self.currentUser
+                    self.navigationController?.pushViewController(chatScreen, animated: true)
                 }
         }
         

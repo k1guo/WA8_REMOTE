@@ -14,8 +14,4 @@ struct ChatMessage {
 
 }
 
-struct ChatSession {
-    var chatId: String
-    var messages: [ChatMessage]
 
-}
