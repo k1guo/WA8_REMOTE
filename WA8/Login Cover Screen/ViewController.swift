@@ -57,8 +57,7 @@ class ViewController: UIViewController {
                 }
                 
                 self.signInToFirebase(email: email, password: password)
-
-        
+                
             }else{
                 showAlertText(text:"please enter all information")
             }
