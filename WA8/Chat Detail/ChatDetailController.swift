@@ -17,6 +17,8 @@ class ChatDetailController: UIViewController {
     
     var currentUser:FirebaseAuth.User?
     
+    var ChatSession = [ChatMessage]()
+    
     let database = Firestore.firestore()
     
     var handleAuth: AuthStateDidChangeListenerHandle?
@@ -32,10 +34,55 @@ class ChatDetailController: UIViewController {
         super.viewDidLoad()
         
         title = " chat message page"
-        // Do any additional setup after loading the view.
+        
+        chatScreen.ChatDetailTableView.delegate = self
+        chatScreen.ChatDetailTableView.dataSource = self
+        
+        //MARK: removing the separator line...
+        chatScreen.ChatDetailTableView.separatorStyle = .none
+        
         chatScreen.buttonSent.addTarget(self, action: #selector(onSentButtonTapped), for: .touchUpInside)
     }
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        handleAuth = Auth.auth().addStateDidChangeListener{ auth, user in
+            if user == nil{
+                print("user is empty")
+                
+            }else{
+                print("user not empty")
+                self.currentUser = user
+                
+//                这个是现在登录的这个用户的名字
+                print(self.currentUser?.displayName!)
+                    
+                self.database.collection("users").whereField("name", isNotEqualTo:self.currentUser?.displayName! ).getDocuments() { (querySnapshot, err) in
+                  if let err = err {
+                    print("Error getting documents: \(err)")
+                  } else {
+                      self.ChatSession.removeAll()
+                      for document in querySnapshot!.documents {
+                        
+                          do{
+                              let info  = try document.data(as: ChatMessage.self)
+                              self.ChatSession.append(info)
+                           
+                          }catch{
+                              print(error)
+                          }
+                    }
+                      
+                      print("print the contacts list     !")
+                      self.mainScreen.tableViewChatLists.reloadData()
+                  }
+                }
+   
+            }
+            
+        }
+        
+    }
     
 
     @objc func onSentButtonTapped(){
@@ -70,6 +117,24 @@ class ChatDetailController: UIViewController {
    
     }
     
+
+
+
+extension ChatDetailController: UITableViewDelegate, UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return ChatSession.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: Configs.ChatDetailTableViewID, for: indexPath) as!
+            ChatDetailTableViewCell
+        cell.labelMessage.text = ChatSession[indexPath.row].message
+        return cell
+    }
+    
+
+}
+
 
     
 

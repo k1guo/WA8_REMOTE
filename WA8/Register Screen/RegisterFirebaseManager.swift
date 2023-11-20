@@ -17,12 +17,27 @@ extension RegisterViewController{
            let email = registerScreen.textFieldEmail.text,
            let password = registerScreen.textFieldPassword.text,
            let reEnterPassword = registerScreen.textFieldVerifyPassword.text{
-            
-            //            login screen 部分的valid enter还没有写
-            if(password != reEnterPassword){
-            showAlertText(text: "Two password not match!")
+
+            if(name.isEmpty == true){
+                return showAlertText(text: "Name is empty!")
             }
-            //W1988445
+            
+            if(email.isEmpty == true){
+                return showAlertText(text: "Email is empty!")
+            }
+            
+            if(password.isEmpty == true){
+                return showAlertText(text: "Password is empty!")
+            }
+            
+            if(password != reEnterPassword){
+                return showAlertText(text: "Two password not match!")
+            }
+            
+            if(password.count < 6){
+                return showAlertText(text: "The password should have at least 6 digit!")
+            }
+            
             if isValidEmail(email){
                 showActivityIndicator()
                 Auth.auth().createUser(withEmail: email, password: password, completion: {result, error in
@@ -50,6 +65,7 @@ extension RegisterViewController{
                                    ]) { error in
                                        if error == nil{
                                            print("store success")
+                                           self.showSuccessText(text: "Success")
                                        }
                                    }
                                 
@@ -61,14 +77,14 @@ extension RegisterViewController{
                     }else{
                         //MARK: there is a error creating the user...
                         print(error)
-                        self.showAlertText(text: String(describing: error))
+                       // self.showAlertText(text: String(describing: error))
+                        self.showAlertText(text: "This email address has been used!")
                     }
                 })
             }else{
                 showAlertText(text: " please enter valid email. ")
             }
             //Validations....
-
 
         }
     }
@@ -102,6 +118,7 @@ extension RegisterViewController{
     }
     
     
+    
     func showAlertText(text:String){
         let alert = UIAlertController(
             title: "Error",
@@ -112,6 +129,20 @@ extension RegisterViewController{
         self.present(alert, animated: true)
     }
     
+    func showSuccessText(text:String){
+        let alert = UIAlertController(
+            title: "Success",
+            message: "\(text)",
+            preferredStyle: .alert
+        )
+        
+        let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+                self?.navigationController?.popViewController(animated: true)
+            }
+        
+        alert.addAction(okAction)
+        self.present(alert, animated: true)
+    }
 
            
    

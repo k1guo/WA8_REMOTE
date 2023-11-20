@@ -11,8 +11,6 @@ import FirebaseAuth
 import FirebaseFirestore
 import Foundation
 
-//""
-
 
 class MainViewController: UIViewController {
     
@@ -25,9 +23,7 @@ class MainViewController: UIViewController {
     var handleAuth: AuthStateDidChangeListenerHandle?
     
     var currentUser:FirebaseAuth.User?
-    
-//    var chatData: ChatData?
-    
+
     let mainScreen = MainScreen()
     
     var chatIdentifier: String?
@@ -77,7 +73,7 @@ class MainViewController: UIViewController {
                 self.navigationItem.rightBarButtonItems = [barIcon, barText]
                 
 //                这个是现在登录的这个用户的名字
-//                print(self.currentUser?.displayName!)
+                print(self.currentUser?.displayName!)
                     
                 self.database.collection("users").whereField("name", isNotEqualTo:self.currentUser?.displayName! ).getDocuments() { (querySnapshot, err) in
                   if let err = err {
@@ -106,6 +102,44 @@ class MainViewController: UIViewController {
             
         }
         
+    }
+    func getAndReloadMessage(){
+        print(self.chatIdentifier,"here")
+//        开始对数据库进行查询 查看这两个人是否有聊天记录
+        
+        let refDoc = self.database.collection("chats").document(self.chatIdentifier!).collection("chatDetail")
+        refDoc.getDocuments { (querySnapshot, error) in
+            if let error = error {
+                // 处理错误
+                print("Error getting documents: \(error)")
+            } else {
+                // 检查是否有文档
+                if let snapshot = querySnapshot, !snapshot.isEmpty {
+//                    下面是有文档的情况
+                    print("Documents found in chatDetail collection.")
+                    for document in snapshot.documents {
+                        print("\(document.documentID) => \(document.data())")
+                    }
+                } else {
+//                    下面是没有文档的情况，创建新的聊天文档
+                    print("No chats found in chatDetail collection.")
+    
+                    self.database.collection("chats").document(self.chatIdentifier!).setData([:]) { error in
+                        if let error = error {
+                            print("Error creating new chat session: \(error)")
+                        } else {
+                            print("New chat session created successfully with ID: \(self.chatIdentifier)")
+                        }
+                    }
+                }
+            }
+        }
+        
+//        处理完数据库 进入到新的页面
+        let chatScreen = ChatDetailController()
+        chatScreen.chatIdentifier=self.chatIdentifier
+        chatScreen.currentUser = self.currentUser
+        self.navigationController?.pushViewController(chatScreen, animated: true)
     }
     
     @objc func onLogOutBarButtonTapped(){
@@ -140,54 +174,14 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         let otherId = contactsList[indexPath.row].userId
-
-        print(self.currentUser?.uid,"here should be current user's id")
         if let uwId = self.currentUser?.uid{
 //            这里是通过sort双方的uid 创建一个独一无二的chatIdentifier，通过这个chatIdentifier可以查看双方的聊天记录
             let userIds = [otherId, uwId]
             let sortedIds = userIds.sorted()
-            let chatIdentifier = sortedIds.joined(separator: "_")
-            print(chatIdentifier)
-            
-            self.database.collection("chats").whereField("ChatUsers", isEqualTo: chatIdentifier)
-                .getDocuments() { (querySnapshot, err) in
-                    if let err = err {
-                        print("Error getting documents: \(err)")
-                    } else {
-                        // 检查是否有文档，有文档的话要在chat detail 那边reload
-                        if let snapshot = querySnapshot, snapshot.documents.isEmpty == false {
-                            print("here")
-                            for document in snapshot.documents {
-                                print("\(document.documentID) => \(document.data())")
-                            }
-                        } else {
-                            
-                            print("No chats found. Creating a new chat.")
-                            // 没有找到文档，使用 chatIdentifier 作为文档ID来创建一个新的文档
-                            self.database.collection("chats").document(chatIdentifier).setData([:]) { error in
-                                if let error = error {
-                                    print("Error creating new chat session: \(error)")
-                                } else {
-                                    print("New chat session created successfully with ID: \(chatIdentifier)")
-                                }
-                            }
-
-                        }
-                    }
-                    
-                    let chatScreen = ChatDetailController()
-                    chatScreen.chatIdentifier=chatIdentifier
-                    chatScreen.currentUser = self.currentUser
-                    self.navigationController?.pushViewController(chatScreen, animated: true)
+            self.chatIdentifier = sortedIds.joined(separator: "_")
+            self.getAndReloadMessage()
                 }
         }
-        
-        
-    }
-        
-        
-        
-        
-    }
+ 
+}

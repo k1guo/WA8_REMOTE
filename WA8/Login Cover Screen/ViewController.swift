@@ -28,8 +28,6 @@ class ViewController: UIViewController {
         view = mainScreen
     }
 
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -57,8 +55,7 @@ class ViewController: UIViewController {
                 }
                 
                 self.signInToFirebase(email: email, password: password)
-
-        
+                
             }else{
                 showAlertText(text:"please enter all information")
             }
