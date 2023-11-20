@@ -39,29 +39,34 @@ class ChatDetailController: UIViewController {
     
 
     @objc func onSentButtonTapped(){
-        handleAuth = Auth.auth().addStateDidChangeListener{ auth, user in
-            if user == nil{
-                print("user is empty")
-                
-            }else{
-                print("user not empty")
+      
+        if let senderId = currentUser?.uid,let message = chatScreen.textField.text{
+        let newMessage = ChatMessage(senderId: senderId, message: message, timestamp:  Date())
+        print("here")
+        print(newMessage.self)
 
-                self.createNewMessageInChat()
-            }
+            // 将 ChatMessage 转换
+             let messageData: [String: Any] = [
+                 "senderId": newMessage.senderId,
+                 "message": newMessage.message,
+                 "timestamp": Timestamp(date: newMessage.timestamp)
+             ]
+
+             // 存储数据
+            let refDoc = self.database.collection("chats").document(self.chatIdentifier!)
+            refDoc.collection("chatDetail").document().setData(messageData, merge: true) { error in
+                 if let error = error {
+                     print("Error writing document: \(error)")
+                 } else {
+                     print("Document successfully written!")
+                 }
+             }
+
         }
+
     }
     
-    // 这里需要将消息添加到数据库的代码 unfinish
-    func createNewMessageInChat(){
-        if let senderId = currentUser?.uid,let message = chatScreen.textField.text{
-            let newMessage = ChatMessage(senderId: senderId, message: message, timestamp:  Date())
 
-         
-
-        }
-        
-        
-    }
    
     }
     
