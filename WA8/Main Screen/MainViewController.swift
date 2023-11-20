@@ -60,6 +60,22 @@ class MainViewController: UIViewController {
                 print("user not empty")
                 self.currentUser = user
                 
+                //MARK: user is logged in...
+                let barIcon = UIBarButtonItem(
+                    image: UIImage(systemName: "rectangle.portrait.and.arrow.forward"),
+                    style: .plain,
+                    target: self,
+                    action: #selector(self.onLogOutBarButtonTapped)
+                )
+                let barText = UIBarButtonItem(
+                    title: "Logout",
+                    style: .plain,
+                    target: self,
+                    action: #selector(self.onLogOutBarButtonTapped)
+                )
+                
+                self.navigationItem.rightBarButtonItems = [barIcon, barText]
+                
 //                这个是现在登录的这个用户的名字
 //                print(self.currentUser?.displayName!)
                     
@@ -83,11 +99,31 @@ class MainViewController: UIViewController {
                       self.mainScreen.tableViewChatLists.reloadData()
                   }
                 }
+                
+                self.currentUser = user
    
             }
             
         }
         
+    }
+    
+    @objc func onLogOutBarButtonTapped(){
+        let logoutAlert = UIAlertController(title: "Logging out!", message: "Are you sure want to log out?",
+            preferredStyle: .actionSheet)
+        logoutAlert.addAction(UIAlertAction(title: "Yes, log out!", style: .default, handler: {(_) in
+                do{
+                    try Auth.auth().signOut()
+                }catch{
+                    print("Error occured!")
+                }
+            let loginViewController = ViewController()
+            self.navigationController?.setViewControllers([loginViewController], animated: true)
+            })
+        )
+        logoutAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        
+        self.present(logoutAlert, animated: true)
     }
     
 }
