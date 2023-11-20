@@ -16,6 +16,9 @@ class ChatDetailScreen: UIView {
     var buttonSent:UIButton!
 
     
+    var ChatDetailTableView: UITableView!
+
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .white
@@ -55,6 +58,13 @@ class ChatDetailScreen: UIView {
         contentWrapper.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(contentWrapper)
     }
+    
+    func setupTableViewNotes(){
+        ChatDetailTableView = UITableView()
+        ChatDetailTableView.register(ChatDetailTableViewCell.self, forCellReuseIdentifier: Configs.ChatDetailTableViewID)
+        ChatDetailTableView.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(ChatDetailTableView)
+    }
 
     func setupButtonSent(){
         buttonSent = UIButton(type: .system)
@@ -65,6 +75,11 @@ class ChatDetailScreen: UIView {
     }
     func initConstraints(){
         NSLayoutConstraint.activate([
+            
+            ChatDetailTableView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 32),
+            ChatDetailTableView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 8),
+            ChatDetailTableView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -8),
+            ChatDetailTableView.bottomAnchor.constraint(equalTo: bottomAddView.topAnchor,constant: -8),
        
             bottomAddView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor,constant: -8),
             bottomAddView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 8),

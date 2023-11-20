@@ -28,8 +28,6 @@ class ViewController: UIViewController {
         view = mainScreen
     }
 
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
