@@ -9,7 +9,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.example.WA8</string>
+	<string>com.group9.WA8</string>
 	<key>PROJECT_ID</key>
 	<string>wa8-team</string>
 	<key>STORAGE_BUCKET</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:1060319397063:ios:9f9e0886791a9991b7aae2</string>
+	<string>1:1060319397063:ios:7f72534642b0788eb7aae2</string>
 </dict>
 </plist>
