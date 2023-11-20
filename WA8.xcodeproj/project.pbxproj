@@ -7,13 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2AFB9D382B0BF09300E5E7AB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFB9D342B0BF09300E5E7AB /* ViewController.swift */; };
+		2AFB9D392B0BF09300E5E7AB /* RightBarButtonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFB9D352B0BF09300E5E7AB /* RightBarButtonManager.swift */; };
+		2AFB9D3A2B0BF09300E5E7AB /* LoginCoverScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFB9D372B0BF09300E5E7AB /* LoginCoverScreen.swift */; };
+		2AFB9D3C2B0BF20500E5E7AB /* LoginProgressIndicatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFB9D3B2B0BF20500E5E7AB /* LoginProgressIndicatorManager.swift */; };
 		BC06644E2B04AA2300B1F296 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC06644D2B04AA2300B1F296 /* AppDelegate.swift */; };
 		BC0664502B04AA2300B1F296 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC06644F2B04AA2300B1F296 /* SceneDelegate.swift */; };
-		BC0664522B04AA2300B1F296 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0664512B04AA2300B1F296 /* ViewController.swift */; };
 		BC0664552B04AA2300B1F296 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC0664532B04AA2300B1F296 /* Main.storyboard */; };
 		BC0664572B04AA2500B1F296 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC0664562B04AA2500B1F296 /* Assets.xcassets */; };
 		BC06645A2B04AA2500B1F296 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC0664582B04AA2500B1F296 /* LaunchScreen.storyboard */; };
-		BC0664632B04AAD200B1F296 /* LoginCoverScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0664622B04AAD200B1F296 /* LoginCoverScreen.swift */; };
 		BC0664662B04ABF000B1F296 /* RegisterScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0664652B04ABF000B1F296 /* RegisterScreen.swift */; };
 		BC0664682B04AC0100B1F296 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0664672B04AC0100B1F296 /* RegisterViewController.swift */; };
 		BC06646A2B04B0DF00B1F296 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC0664692B04B0DF00B1F296 /* GoogleService-Info.plist */; };
@@ -26,7 +28,6 @@
 		BC0664812B0554AD00B1F296 /* ProgressSpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0664802B0554AD00B1F296 /* ProgressSpinnerViewController.swift */; };
 		BC0664832B0554CD00B1F296 /* ProgressSpinnerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0664822B0554CD00B1F296 /* ProgressSpinnerDelegate.swift */; };
 		BC0664852B05551000B1F296 /* RegisterProgressIndicatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0664842B05551000B1F296 /* RegisterProgressIndicatorManager.swift */; };
-		BC0664882B055C0200B1F296 /* RightBarButtonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0664872B055C0200B1F296 /* RightBarButtonManager.swift */; };
 		BC06648B2B055C7E00B1F296 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC06648A2B055C7E00B1F296 /* Contact.swift */; };
 		BC06648D2B055DC600B1F296 /* Configs.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC06648C2B055DC600B1F296 /* Configs.swift */; };
 		BC2761472B09D30D00218308 /* ChatData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2761462B09D30D00218308 /* ChatData.swift */; };
@@ -37,15 +38,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2AFB9D342B0BF09300E5E7AB /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2AFB9D352B0BF09300E5E7AB /* RightBarButtonManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightBarButtonManager.swift; sourceTree = "<group>"; };
+		2AFB9D372B0BF09300E5E7AB /* LoginCoverScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCoverScreen.swift; sourceTree = "<group>"; };
+		2AFB9D3B2B0BF20500E5E7AB /* LoginProgressIndicatorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginProgressIndicatorManager.swift; sourceTree = "<group>"; };
 		BC06644A2B04AA2300B1F296 /* WA8.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WA8.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC06644D2B04AA2300B1F296 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BC06644F2B04AA2300B1F296 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		BC0664512B04AA2300B1F296 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		BC0664542B04AA2300B1F296 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BC0664562B04AA2500B1F296 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BC0664592B04AA2500B1F296 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BC06645B2B04AA2500B1F296 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BC0664622B04AAD200B1F296 /* LoginCoverScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoverScreen.swift; sourceTree = "<group>"; };
 		BC0664652B04ABF000B1F296 /* RegisterScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterScreen.swift; sourceTree = "<group>"; };
 		BC0664672B04AC0100B1F296 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		BC0664692B04B0DF00B1F296 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -54,7 +57,6 @@
 		BC0664802B0554AD00B1F296 /* ProgressSpinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressSpinnerViewController.swift; sourceTree = "<group>"; };
 		BC0664822B0554CD00B1F296 /* ProgressSpinnerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressSpinnerDelegate.swift; sourceTree = "<group>"; };
 		BC0664842B05551000B1F296 /* RegisterProgressIndicatorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterProgressIndicatorManager.swift; sourceTree = "<group>"; };
-		BC0664872B055C0200B1F296 /* RightBarButtonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightBarButtonManager.swift; sourceTree = "<group>"; };
 		BC06648A2B055C7E00B1F296 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		BC06648C2B055DC600B1F296 /* Configs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configs.swift; sourceTree = "<group>"; };
 		BC2761462B09D30D00218308 /* ChatData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatData.swift; sourceTree = "<group>"; };
@@ -79,6 +81,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2AFB9D332B0BF09300E5E7AB /* Login Cover Screen */ = {
+			isa = PBXGroup;
+			children = (
+				2AFB9D3B2B0BF20500E5E7AB /* LoginProgressIndicatorManager.swift */,
+				2AFB9D342B0BF09300E5E7AB /* ViewController.swift */,
+				2AFB9D352B0BF09300E5E7AB /* RightBarButtonManager.swift */,
+				2AFB9D362B0BF09300E5E7AB /* Views */,
+			);
+			path = "Login Cover Screen";
+			sourceTree = "<group>";
+		};
+		2AFB9D362B0BF09300E5E7AB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2AFB9D372B0BF09300E5E7AB /* LoginCoverScreen.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		BC0664412B04AA2300B1F296 = {
 			isa = PBXGroup;
 			children = (
@@ -98,12 +119,12 @@
 		BC06644C2B04AA2300B1F296 /* WA8 */ = {
 			isa = PBXGroup;
 			children = (
+				2AFB9D332B0BF09300E5E7AB /* Login Cover Screen */,
 				BC98EAEE2B083630001D5738 /* Chat Detail */,
 				BC98EAE92B0808B7001D5738 /* Main Screen */,
 				BC0664892B055C6D00B1F296 /* Data Models */,
 				BC06647F2B05548B00B1F296 /* Progress Indicator */,
 				BC0664642B04ABD100B1F296 /* Register Screen */,
-				BC0664612B04AA9A00B1F296 /*  Login Cover Screen */,
 				BC06644D2B04AA2300B1F296 /* AppDelegate.swift */,
 				BC06644F2B04AA2300B1F296 /* SceneDelegate.swift */,
 				BC0664532B04AA2300B1F296 /* Main.storyboard */,
@@ -114,16 +135,6 @@
 				BC06648C2B055DC600B1F296 /* Configs.swift */,
 			);
 			path = WA8;
-			sourceTree = "<group>";
-		};
-		BC0664612B04AA9A00B1F296 /*  Login Cover Screen */ = {
-			isa = PBXGroup;
-			children = (
-				BC0664862B055BDC00B1F296 /* Views */,
-				BC0664512B04AA2300B1F296 /* ViewController.swift */,
-				BC0664872B055C0200B1F296 /* RightBarButtonManager.swift */,
-			);
-			path = " Login Cover Screen";
 			sourceTree = "<group>";
 		};
 		BC0664642B04ABD100B1F296 /* Register Screen */ = {
@@ -144,14 +155,6 @@
 				BC0664822B0554CD00B1F296 /* ProgressSpinnerDelegate.swift */,
 			);
 			path = "Progress Indicator";
-			sourceTree = "<group>";
-		};
-		BC0664862B055BDC00B1F296 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				BC0664622B04AAD200B1F296 /* LoginCoverScreen.swift */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		BC0664892B055C6D00B1F296 /* Data Models */ = {
@@ -266,15 +269,16 @@
 				BC2761472B09D30D00218308 /* ChatData.swift in Sources */,
 				BC98EAED2B080942001D5738 /* MainScreen.swift in Sources */,
 				BC06648B2B055C7E00B1F296 /* Contact.swift in Sources */,
+				2AFB9D392B0BF09300E5E7AB /* RightBarButtonManager.swift in Sources */,
 				BC06647E2B0550B200B1F296 /* ContactsTableViewCell.swift in Sources */,
 				BC0664752B04B5C500B1F296 /* RegisterFirebaseManager.swift in Sources */,
 				BC0664812B0554AD00B1F296 /* ProgressSpinnerViewController.swift in Sources */,
 				BC0664662B04ABF000B1F296 /* RegisterScreen.swift in Sources */,
 				BC0664852B05551000B1F296 /* RegisterProgressIndicatorManager.swift in Sources */,
-				BC0664522B04AA2300B1F296 /* ViewController.swift in Sources */,
 				BC06644E2B04AA2300B1F296 /* AppDelegate.swift in Sources */,
-				BC0664632B04AAD200B1F296 /* LoginCoverScreen.swift in Sources */,
-				BC0664882B055C0200B1F296 /* RightBarButtonManager.swift in Sources */,
+				2AFB9D382B0BF09300E5E7AB /* ViewController.swift in Sources */,
+				2AFB9D3A2B0BF09300E5E7AB /* LoginCoverScreen.swift in Sources */,
+				2AFB9D3C2B0BF20500E5E7AB /* LoginProgressIndicatorManager.swift in Sources */,
 				BC0664832B0554CD00B1F296 /* ProgressSpinnerDelegate.swift in Sources */,
 				BC98EAF02B083658001D5738 /* ChatDetailScreen.swift in Sources */,
 				BC0664502B04AA2300B1F296 /* SceneDelegate.swift in Sources */,
@@ -428,7 +432,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9N25LUX576;
+				DEVELOPMENT_TEAM = MCPP5829E7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WA8/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -441,7 +445,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.WA8;
+				PRODUCT_BUNDLE_IDENTIFIER = com.group9.WA8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -456,7 +460,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9N25LUX576;
+				DEVELOPMENT_TEAM = MCPP5829E7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WA8/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -469,7 +473,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.WA8;
+				PRODUCT_BUNDLE_IDENTIFIER = com.group9.WA8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

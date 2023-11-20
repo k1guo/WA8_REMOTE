@@ -12,7 +12,6 @@ import UIKit
 extension RegisterViewController{
     
     func registerNewAccount(){
-        showActivityIndicator()
         //MARK: create a Firebase user with email and password...
         if let name = registerScreen.textFieldName.text,
            let email = registerScreen.textFieldEmail.text,
@@ -25,7 +24,9 @@ extension RegisterViewController{
             }
             //W1988445
             if isValidEmail(email){
+                showActivityIndicator()
                 Auth.auth().createUser(withEmail: email, password: password, completion: {result, error in
+                    self.hideActivityIndicator()
                     if error == nil{
 //                        register sucess and get this new created user's u id
                         let uid = result!.user.uid
@@ -54,11 +55,13 @@ extension RegisterViewController{
                                 
                                }catch{
                                    print("Error adding document!")
+                                   self.showAlertText(text: "Error adding document!")
                                }
                         self.setNameOfTheUserInFirebaseAuth(name: name)
                     }else{
                         //MARK: there is a error creating the user...
                         print(error)
+                        self.showAlertText(text: String(describing: error))
                     }
                 })
             }else{
@@ -74,7 +77,9 @@ extension RegisterViewController{
     func setNameOfTheUserInFirebaseAuth(name: String){
         let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
         changeRequest?.displayName = name
+        showActivityIndicator()
         changeRequest?.commitChanges(completion: {(error) in
+            self.hideActivityIndicator()
             if error == nil{
                 //MARK: the profile update is successful...
               
@@ -83,6 +88,7 @@ extension RegisterViewController{
             }else{
                 //MARK: there was an error updating the profile...
                 print("Error occured: \(String(describing: error))")
+                self.showAlertText(text: String(describing: error))
             }
         })
     }

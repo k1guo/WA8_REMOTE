@@ -13,6 +13,8 @@ import FirebaseFirestore
 class ViewController: UIViewController {
     
     let mainScreen = LoginCoverScreen()
+
+    let childProgressView = ProgressSpinnerViewController()
     
     
     let database = Firestore.firestore()

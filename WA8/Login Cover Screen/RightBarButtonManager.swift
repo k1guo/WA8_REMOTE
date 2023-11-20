@@ -119,7 +119,9 @@ extension ViewController{
     func signInToFirebase(email: String, password: String){
            //MARK: can you display progress indicator here?
            //MARK: authenticating the user...
+           showActivityIndicator()
            Auth.auth().signIn(withEmail: email, password: password, completion: {(result, error) in
+                self.hideActivityIndicator()
                if error == nil{
                    print("sign in successful")
                     let mainScreen = MainViewController()
