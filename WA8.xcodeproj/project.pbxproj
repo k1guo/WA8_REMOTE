@@ -31,6 +31,7 @@
 		BC06648B2B055C7E00B1F296 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC06648A2B055C7E00B1F296 /* Contact.swift */; };
 		BC06648D2B055DC600B1F296 /* Configs.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC06648C2B055DC600B1F296 /* Configs.swift */; };
 		BC2761472B09D30D00218308 /* ChatData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2761462B09D30D00218308 /* ChatData.swift */; };
+		BC27614E2B0C26B200218308 /* ChatDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC27614D2B0C26B200218308 /* ChatDetailTableViewCell.swift */; };
 		BC98EAEB2B0808FE001D5738 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC98EAEA2B0808FE001D5738 /* MainViewController.swift */; };
 		BC98EAED2B080942001D5738 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC98EAEC2B080942001D5738 /* MainScreen.swift */; };
 		BC98EAF02B083658001D5738 /* ChatDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC98EAEF2B083658001D5738 /* ChatDetailScreen.swift */; };
@@ -60,6 +61,7 @@
 		BC06648A2B055C7E00B1F296 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		BC06648C2B055DC600B1F296 /* Configs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configs.swift; sourceTree = "<group>"; };
 		BC2761462B09D30D00218308 /* ChatData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatData.swift; sourceTree = "<group>"; };
+		BC27614D2B0C26B200218308 /* ChatDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatDetailTableViewCell.swift; sourceTree = "<group>"; };
 		BC98EAEA2B0808FE001D5738 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		BC98EAEC2B080942001D5738 /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
 		BC98EAEF2B083658001D5738 /* ChatDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDetailScreen.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 		BC98EAEE2B083630001D5738 /* Chat Detail */ = {
 			isa = PBXGroup;
 			children = (
+				BC27614D2B0C26B200218308 /* ChatDetailTableViewCell.swift */,
 				BC98EAEF2B083658001D5738 /* ChatDetailScreen.swift */,
 				BC98EAF12B08366E001D5738 /* ChatDetailController.swift */,
 			);
@@ -276,6 +279,7 @@
 				BC0664662B04ABF000B1F296 /* RegisterScreen.swift in Sources */,
 				BC0664852B05551000B1F296 /* RegisterProgressIndicatorManager.swift in Sources */,
 				BC06644E2B04AA2300B1F296 /* AppDelegate.swift in Sources */,
+				BC27614E2B0C26B200218308 /* ChatDetailTableViewCell.swift in Sources */,
 				2AFB9D382B0BF09300E5E7AB /* ViewController.swift in Sources */,
 				2AFB9D3A2B0BF09300E5E7AB /* LoginCoverScreen.swift in Sources */,
 				2AFB9D3C2B0BF20500E5E7AB /* LoginProgressIndicatorManager.swift in Sources */,

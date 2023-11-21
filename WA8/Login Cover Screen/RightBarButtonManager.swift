@@ -125,7 +125,7 @@ extension ViewController{
                if error == nil{
                    print("sign in successful")
                     let mainScreen = MainViewController()
-                    self.navigationController?.pushViewController(mainScreen, animated: true)
+                   self.navigationController?.setViewControllers([mainScreen], animated: true)
 
                }else{
                    self.showAlertText(text:"password or user name fail. Please try again~")
