@@ -16,7 +16,8 @@ class ChatDetailScreen: UIView {
     var buttonSent:UIButton!
 
     
-    var ChatDetailTableView: UITableView!
+    
+    var chatDetailTable: UITableView!
 
     
     override init(frame: CGRect) {
@@ -27,6 +28,7 @@ class ChatDetailScreen: UIView {
         setupBottomAddView()
         setupTextField()
         setupButtonSent()
+        setupTableViewNotes() 
 
         initConstraints()
     }
@@ -60,10 +62,10 @@ class ChatDetailScreen: UIView {
     }
     
     func setupTableViewNotes(){
-        ChatDetailTableView = UITableView()
-        ChatDetailTableView.register(ChatDetailTableViewCell.self, forCellReuseIdentifier: Configs.ChatDetailTableViewID)
-        ChatDetailTableView.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(ChatDetailTableView)
+        chatDetailTable = UITableView()
+        chatDetailTable.register(ChatDetailTableViewCell.self, forCellReuseIdentifier: Configs.ChatDetailTableViewID)
+        chatDetailTable.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(chatDetailTable)
     }
 
     func setupButtonSent(){
@@ -76,11 +78,11 @@ class ChatDetailScreen: UIView {
     func initConstraints(){
         NSLayoutConstraint.activate([
             
-//            ChatDetailTableView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 32),
-//            ChatDetailTableView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 8),
-//            ChatDetailTableView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -8),
-//            ChatDetailTableView.bottomAnchor.constraint(equalTo: bottomAddView.topAnchor,constant: -8),
-       
+//            chatDetailTable.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 32),
+//            chatDetailTable.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 8),
+//            chatDetailTable.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -8),
+//            chatDetailTable.bottomAnchor.constraint(equalTo: bottomAddView.topAnchor),
+//       
             bottomAddView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor,constant: -8),
             bottomAddView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 8),
             bottomAddView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -8),

@@ -29,7 +29,7 @@ class ChatDetailTableViewCell: UITableViewCell {
         }
         
         func setupWrapperCellView(){
-            wrapperCellView = UITableViewCell()
+            wrapperCellView = UIView() 
             
             //working with the shadows and colors...
             wrapperCellView.backgroundColor = .white
@@ -60,6 +60,7 @@ class ChatDetailTableViewCell: UITableViewCell {
         
         func initConstraints(){
             NSLayoutConstraint.activate([
+                
                 wrapperCellView.topAnchor.constraint(equalTo: self.topAnchor,constant: 10),
                 wrapperCellView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
                 wrapperCellView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10),

@@ -17,7 +17,7 @@ class ChatDetailController: UIViewController {
     
     var currentUser:FirebaseAuth.User?
     
-    var ChatSession = [ChatMessage]()
+    var chatSession = [ChatMessage]()
     
     let database = Firestore.firestore()
     
@@ -35,12 +35,16 @@ class ChatDetailController: UIViewController {
         
         title = " chat message page"
         
-//        chatScreen.ChatDetailTableView.delegate = self
-//        chatScreen.ChatDetailTableView.dataSource = self
-//
+        print(chatSession)
+        
+        chatScreen.chatDetailTable.delegate = self
+        chatScreen.chatDetailTable.dataSource = self
+
         //MARK: removing the separator line...
-//        chatScreen.ChatDetailTableView.separatorStyle = .none
-//        
+        chatScreen.chatDetailTable.separatorStyle = .none
+//        self.chatSession.reload()
+        self.chatScreen.chatDetailTable.reloadData()
+  
         chatScreen.buttonSent.addTarget(self, action: #selector(onSentButtonTapped), for: .touchUpInside)
     }
     
@@ -51,30 +55,31 @@ class ChatDetailController: UIViewController {
                 print("user is empty")
                 
             }else{
-                print("user not empty")
+                print("user not empty12345")
                 self.currentUser = user
                 
 //                这个是现在登录的这个用户的名字
                 print(self.currentUser?.displayName!)
                     
-                self.database.collection("users").whereField("name", isNotEqualTo:self.currentUser?.displayName! ).getDocuments() { (querySnapshot, err) in
+                self.database.collection("chats").document(self.chatIdentifier!).collection("chatDetail").getDocuments() { (querySnapshot, err) in
                   if let err = err {
                     print("Error getting documents: \(err)")
                   } else {
-                      self.ChatSession.removeAll()
+                      self.chatSession.removeAll()
                       for document in querySnapshot!.documents {
                         
                           do{
-//                              let info  = try document.data(as: ChatMessage.self)
-//                              self.ChatSession.append(info)
+                              let info = try document.data(as: ChatMessage.self)
+                              self.chatSession.append(info)
+                              print(info,"info here111")
                            
                           }catch{
                               print(error)
                           }
                     }
                       
-//                      print("print the contacts list     !")
-//                      self.chatScreen.tableViewChatLists.reloadData()
+                      print("print the message list     !")
+                      self.chatScreen.chatDetailTable.reloadData()
                   }
                 }
    
@@ -113,22 +118,22 @@ class ChatDetailController: UIViewController {
 
     }
     
-
-   
-    }
+}
     
 
 
 
 extension ChatDetailController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ChatSession.count
+        return chatSession.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Configs.ChatDetailTableViewID, for: indexPath) as!
             ChatDetailTableViewCell
-        cell.labelMessage.text = ChatSession[indexPath.row].message
+        print( chatSession[indexPath.row].message,"printttt here")
+        cell.labelMessage.text = chatSession[indexPath.row].message
+        cell.labelTime.text = "time!!"
         return cell
     }
     

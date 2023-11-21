@@ -14,11 +14,11 @@ import Foundation
 
 class MainViewController: UIViewController {
     
+    var chatSession = [ChatMessage]()
+    
     var contactsList = [Contact]()
     
     let database = Firestore.firestore()
-    
-    var here:String?
     
     var handleAuth: AuthStateDidChangeListenerHandle?
     
@@ -104,6 +104,7 @@ class MainViewController: UIViewController {
         
     }
     func getAndReloadMessage(){
+        
         print(self.chatIdentifier,"here")
 //        开始对数据库进行查询 查看这两个人是否有聊天记录
         
@@ -119,6 +120,20 @@ class MainViewController: UIViewController {
                     print("Documents found in chatDetail collection.")
                     for document in snapshot.documents {
                         print("\(document.documentID) => \(document.data())")
+                        do{
+                            let info  = try document.data(as: ChatMessage.self)
+                            self.chatSession.append(info)
+                         
+                        }catch{
+                            print(error)
+                        }
+                        
+                        print(self.chatSession,"have this in message list")
+                        let chatScreen = ChatDetailController()
+                        chatScreen.chatSession=self.chatSession
+                        print(print(chatScreen.chatSession,"have this in message list in detail page"))
+                        
+                    
                     }
                 } else {
 //                    下面是没有文档的情况，创建新的聊天文档
