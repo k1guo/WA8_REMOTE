@@ -110,9 +110,12 @@ class ChatDetailController: UIViewController {
                  if let error = error {
                      print("Error writing document: \(error)")
                  } else {
+                     self.chatSession.append(newMessage)
+                     self.chatScreen.chatDetailTable.reloadData()
                      print("Document successfully written!")
                  }
              }
+            
 
         }
 
@@ -133,7 +136,12 @@ extension ChatDetailController: UITableViewDelegate, UITableViewDataSource{
             ChatDetailTableViewCell
         print( chatSession[indexPath.row].message,"printttt here")
         cell.labelMessage.text = chatSession[indexPath.row].message
-        cell.labelTime.text = "time!!"
+        // 格式化时间戳
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .short
+        let dateString = formatter.string(from: chatSession[indexPath.row].timestamp)
+        cell.labelTime.text = dateString
         return cell
     }
     
