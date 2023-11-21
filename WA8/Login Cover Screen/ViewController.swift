@@ -35,6 +35,18 @@ class ViewController: UIViewController {
 
         mainScreen.buttonSignup.addTarget(self, action: #selector(buttonSignup), for: .touchUpInside)
         mainScreen.buttonLogin.addTarget(self, action: #selector(buttonLogin), for: .touchUpInside)
+   
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboardOnTap))
+        tapRecognizer.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapRecognizer)
+
+    }
+
+
+    //MARK: Hide Keyboard...
+    @objc func hideKeyboardOnTap(){
+        //MARK: removing the keyboard from screen...
+        view.endEditing(true)
     }
     
     

@@ -11,83 +11,145 @@ import UIKit
 
 extension RegisterViewController{
     
-    func registerNewAccount(){
-        //MARK: create a Firebase user with email and password...
-        if let name = registerScreen.textFieldName.text,
-           let email = registerScreen.textFieldEmail.text,
-           let password = registerScreen.textFieldPassword.text,
-           let reEnterPassword = registerScreen.textFieldVerifyPassword.text{
+//    func registerNewAccount(){
+//        //MARK: create a Firebase user with email and password...
+//        if let name = registerScreen.textFieldName.text,
+//           let email = registerScreen.textFieldEmail.text,
+//           let password = registerScreen.textFieldPassword.text,
+//           let reEnterPassword = registerScreen.textFieldVerifyPassword.text{
+//
+//
+//            if(name.isEmpty == true){
+//                return showAlertText(text: "Name is empty!")
+//            }
+//
+//            if(email.isEmpty == true){
+//                return showAlertText(text: "Email is empty!")
+//            }
+//
+//            if(password.isEmpty == true){
+//                return showAlertText(text: "Password is empty!")
+//            }
+//
+//            if(password != reEnterPassword){
+//                return showAlertText(text: "Two password not match!")
+//            }
+//
+//            if(password.count < 6){
+//                return showAlertText(text: "The password should have at least 6 digit!")
+//            }
+//
+//            if isValidEmail(email){
+//                showActivityIndicator()
+//                Auth.auth().createUser(withEmail: email, password: password, completion: {result, error in
+//                    self.hideActivityIndicator()
+//                    if error == nil{
+////                        register sucess and get this new created user's u id
+//                        let uid = result!.user.uid
+//
+//                        //MARK: the user creation is successful...
+//                        let contact = Contact(name: name, email: email, userId: uid )
+//
+//
+//                            let collectionContacts = self.database
+//                                   .collection("users")
+//                                   .document(name)
+//
+//
+//                               do{
+//
+//                                   try collectionContacts.setData([
+//                                    "email": email,
+//                                    "name": name,
+//                                    "userId": uid,
+//
+//                                   ]) { error in
+//                                       if error == nil{
+//                                           print("store success")
+//                                           self.showSuccessText(text: "Success")
+//                                       }
+//                                   }
+//
+//                               }catch{
+//                                   print("Error adding document!")
+//                                   self.showAlertText(text: "Error adding document!")
+//                               }
+//                        self.setNameOfTheUserInFirebaseAuth(name: name)
+//                    }else{
+//                        //MARK: there is a error creating the user...
+//                        print(error)
+//                       // self.showAlertText(text: String(describing: error))
+//                        self.showAlertText(text: "This email address has been used!")
+//                    }
+//                })
+//            }else{
+//                showAlertText(text: " please enter valid email. ")
+//            }
+//            //Validations....
+//
+//        }
+//    }
+    
+    
+    func registerNewAccount() {
+        guard let name = registerScreen.textFieldName.text,
+              let email = registerScreen.textFieldEmail.text,
+              let password = registerScreen.textFieldPassword.text,
+              let reEnterPassword = registerScreen.textFieldVerifyPassword.text else {
+            return showAlertText(text: "Please fill in all fields.")
+        }
 
-            if(name.isEmpty == true){
-                return showAlertText(text: "Name is empty!")
-            }
-            
-            if(email.isEmpty == true){
-                return showAlertText(text: "Email is empty!")
-            }
-            
-            if(password.isEmpty == true){
-                return showAlertText(text: "Password is empty!")
-            }
-            
-            if(password != reEnterPassword){
-                return showAlertText(text: "Two password not match!")
-            }
-            
-            if(password.count < 6){
-                return showAlertText(text: "The password should have at least 6 digit!")
-            }
-            
-            if isValidEmail(email){
-                showActivityIndicator()
-                Auth.auth().createUser(withEmail: email, password: password, completion: {result, error in
-                    self.hideActivityIndicator()
-                    if error == nil{
-//                        register sucess and get this new created user's u id
-                        let uid = result!.user.uid
-                       
-                        //MARK: the user creation is successful...
-                        let contact = Contact(name: name, email: email, userId: uid )
-                       
-                            
-                            let collectionContacts = self.database
-                                   .collection("users")
-                                   .document(name)
-                                  
+        // 基本输入验证
+        if name.isEmpty {
+            return showAlertText(text: "Name is empty!")
+        }
+        if email.isEmpty {
+            return showAlertText(text: "Email is empty!")
+        }
+        if !isValidEmail(email) {
+            return showAlertText(text: "Please enter a valid email.")
+        }
+        if password.isEmpty {
+            return showAlertText(text: "Password is empty!")
+        }
+        if password.count < 6 {
+            return showAlertText(text: "The password should have at least 6 characters!")
+        }
+        if password != reEnterPassword {
+            return showAlertText(text: "Passwords do not match!")
+        }
 
-                               do{
-                                   
-                                   try collectionContacts.setData([
-                                    "email": email,
-                                    "name": name,
-                                    "userId": uid,
-             
-                                   ]) { error in
-                                       if error == nil{
-                                           print("store success")
-                                           self.showSuccessText(text: "Success")
-                                       }
-                                   }
-                                
-                               }catch{
-                                   print("Error adding document!")
-                                   self.showAlertText(text: "Error adding document!")
-                               }
-                        self.setNameOfTheUserInFirebaseAuth(name: name)
-                    }else{
-                        //MARK: there is a error creating the user...
-                        print(error)
-                       // self.showAlertText(text: String(describing: error))
-                        self.showAlertText(text: "This email address has been used!")
+        // Firebase 用户注册
+        showActivityIndicator()
+        Auth.auth().createUser(withEmail: email, password: password) { result, error in
+            self.hideActivityIndicator()
+            if let error = error {
+                print(error)
+                self.showAlertText(text: "This email address has been used or other error occurred!")
+            } else if let uid = result?.user.uid {
+                // 用户创建成功
+                let contact = Contact(name: name, email: email, userId: uid)
+                let collectionContacts = self.database.collection("users").document(name)
+                do {
+                    try collectionContacts.setData(["email": email, "name": name, "userId": uid]) { error in
+                        if let error = error {
+                            print(error)
+                            self.showAlertText(text: "Error adding document!")
+                        } else {
+                            print("Store success")
+                            self.showSuccessText(text: "Registration successful")
+                            self.setNameOfTheUserInFirebaseAuth(name: name)
+                        }
                     }
-                })
-            }else{
-                showAlertText(text: " please enter valid email. ")
+                } catch {
+                    print("Error adding document!")
+                    self.showAlertText(text: "Error adding document!")
+                }
             }
-            //Validations....
-
         }
     }
+
+    
     
     //MARK: We set the name of the user after we create the account...
     func setNameOfTheUserInFirebaseAuth(name: String){

@@ -28,6 +28,8 @@ class MainViewController: UIViewController {
     
     var chatIdentifier: String?
     
+    var otherName: String?
+    
     override func loadView() {
         view = mainScreen
     }
@@ -39,11 +41,9 @@ class MainViewController: UIViewController {
         title = "My Chat List"
         navigationController?.navigationBar.prefersLargeTitles = true
         
-        //MARK: patching table view delegate and data source...
         mainScreen.tableViewChatLists.delegate = self
         mainScreen.tableViewChatLists.dataSource = self
         
-        //MARK: removing the separator line...
         mainScreen.tableViewChatLists.separatorStyle = .none
     }
     
@@ -55,7 +55,6 @@ class MainViewController: UIViewController {
             }else{
                 print("user not empty")
                 self.currentUser = user
-                
                 //MARK: user is logged in...
                 let barIcon = UIBarButtonItem(
                     image: UIImage(systemName: "rectangle.portrait.and.arrow.forward"),
@@ -81,7 +80,6 @@ class MainViewController: UIViewController {
                   } else {
                       self.contactsList.removeAll()
                       for document in querySnapshot!.documents {
-                        
                           do{
                               let contact  = try document.data(as: Contact.self)
                               self.contactsList.append(contact)
@@ -90,53 +88,24 @@ class MainViewController: UIViewController {
                               print(error)
                           }
                     }
-                      
                       print("print the contacts list     !")
                       self.mainScreen.tableViewChatLists.reloadData()
                   }
                 }
                 
                 self.currentUser = user
-   
             }
-            
         }
-        
     }
+    
     func getAndReloadMessage(){
-        
-        print(self.chatIdentifier,"here")
-//        开始对数据库进行查询 查看这两个人是否有聊天记录
-        
         let refDoc = self.database.collection("chats").document(self.chatIdentifier!).collection("chatDetail")
         refDoc.getDocuments { (querySnapshot, error) in
             if let error = error {
-                // 处理错误
+                // error
                 print("Error getting documents: \(error)")
             } else {
-                // 检查是否有文档
-                if let snapshot = querySnapshot, !snapshot.isEmpty {
-//                    下面是有文档的情况
-                    print("Documents found in chatDetail collection.")
-                    for document in snapshot.documents {
-                        print("\(document.documentID) => \(document.data())")
-                        do{
-                            let info  = try document.data(as: ChatMessage.self)
-                            self.chatSession.append(info)
-                         
-                        }catch{
-                            print(error)
-                        }
-                        
-                        print(self.chatSession,"have this in message list")
-                        let chatScreen = ChatDetailController()
-                        chatScreen.chatSession=self.chatSession
-                        print(print(chatScreen.chatSession,"have this in message list in detail page"))
-                        
-                    
-                    }
-                } else {
-//                    下面是没有文档的情况，创建新的聊天文档
+//                else create a new database for new chat session
                     print("No chats found in chatDetail collection.")
     
                     self.database.collection("chats").document(self.chatIdentifier!).setData([:]) { error in
@@ -145,15 +114,15 @@ class MainViewController: UIViewController {
                         } else {
                             print("New chat session created successfully with ID: \(self.chatIdentifier)")
                         }
-                    }
                 }
             }
         }
-        
-//        处理完数据库 进入到新的页面
+    
+//        pop to new screen
         let chatScreen = ChatDetailController()
         chatScreen.chatIdentifier=self.chatIdentifier
         chatScreen.currentUser = self.currentUser
+        chatScreen.otherName = self.otherName
         self.navigationController?.pushViewController(chatScreen, animated: true)
     }
     
@@ -190,8 +159,10 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let otherId = contactsList[indexPath.row].userId
+        self.otherName = contactsList[indexPath.row].name
+      
         if let uwId = self.currentUser?.uid{
-//            这里是通过sort双方的uid 创建一个独一无二的chatIdentifier，通过这个chatIdentifier可以查看双方的聊天记录
+//           create new id and this id sort by their uid
             let userIds = [otherId, uwId]
             let sortedIds = userIds.sorted()
             self.chatIdentifier = sortedIds.joined(separator: "_")

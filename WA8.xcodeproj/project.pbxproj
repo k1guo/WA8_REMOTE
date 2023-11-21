@@ -181,9 +181,9 @@
 		BC98EAEE2B083630001D5738 /* Chat Detail */ = {
 			isa = PBXGroup;
 			children = (
+				BC98EAF12B08366E001D5738 /* ChatDetailController.swift */,
 				BC27614D2B0C26B200218308 /* ChatDetailTableViewCell.swift */,
 				BC98EAEF2B083658001D5738 /* ChatDetailScreen.swift */,
-				BC98EAF12B08366E001D5738 /* ChatDetailController.swift */,
 			);
 			path = "Chat Detail";
 			sourceTree = "<group>";

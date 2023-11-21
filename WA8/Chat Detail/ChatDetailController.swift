@@ -25,6 +25,7 @@ class ChatDetailController: UIViewController {
     
     var chatIdentifier: String?
     
+    var otherName:String?
 //    var chatData: ChatData?
     
     override func loadView() {
@@ -44,10 +45,35 @@ class ChatDetailController: UIViewController {
         chatScreen.chatDetailTable.separatorStyle = .none
 //        self.chatSession.reload()
         self.chatScreen.chatDetailTable.reloadData()
+        
   
         chatScreen.buttonSent.addTarget(self, action: #selector(onSentButtonTapped), for: .touchUpInside)
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboardOnTap))
+        tapRecognizer.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapRecognizer)
+
+    }
+
+
+    //MARK: Hide Keyboard...
+    @objc func hideKeyboardOnTap(){
+        //MARK: removing the keyboard from screen...
+        view.endEditing(true)
     }
     
+    
+    func scrollToBottom() {
+        DispatchQueue.main.async {
+             let numberOfSections = self.chatScreen.chatDetailTable.numberOfSections
+             let numberOfRows = self.chatScreen.chatDetailTable.numberOfRows(inSection: numberOfSections - 1)
+
+             if numberOfRows > 0 {
+                 let indexPath = IndexPath(row: numberOfRows - 1, section: numberOfSections - 1)
+                 self.chatScreen.chatDetailTable.scrollToRow(at: indexPath, at: .bottom, animated: true)
+             }
+         }
+    }
+
     
     override func viewWillAppear(_ animated: Bool) {
         handleAuth = Auth.auth().addStateDidChangeListener{ auth, user in
@@ -57,36 +83,34 @@ class ChatDetailController: UIViewController {
             }else{
                 print("user not empty12345")
                 self.currentUser = user
-                
-//                这个是现在登录的这个用户的名字
-                print(self.currentUser?.displayName!)
-                    
+        
                 self.database.collection("chats").document(self.chatIdentifier!).collection("chatDetail").getDocuments() { (querySnapshot, err) in
                   if let err = err {
                     print("Error getting documents: \(err)")
                   } else {
                       self.chatSession.removeAll()
                       for document in querySnapshot!.documents {
-                        
+
                           do{
                               let info = try document.data(as: ChatMessage.self)
                               self.chatSession.append(info)
                               print(info,"info here111")
-                           
+
                           }catch{
                               print(error)
                           }
                     }
-                      
+
                       print("print the message list     !")
                       self.chatScreen.chatDetailTable.reloadData()
+                      self.scrollToBottom()
                   }
                 }
    
             }
             
         }
-        
+        scrollToBottom()
     }
     
 
@@ -112,6 +136,7 @@ class ChatDetailController: UIViewController {
                  } else {
                      self.chatSession.append(newMessage)
                      self.chatScreen.chatDetailTable.reloadData()
+                     self.scrollToBottom()
                      print("Document successfully written!")
                  }
              }
@@ -137,11 +162,31 @@ extension ChatDetailController: UITableViewDelegate, UITableViewDataSource{
         print( chatSession[indexPath.row].message,"printttt here")
         cell.labelMessage.text = chatSession[indexPath.row].message
         // 格式化时间戳
+        self.chatSession.sort { $0.timestamp < $1.timestamp }
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         formatter.timeStyle = .short
         let dateString = formatter.string(from: chatSession[indexPath.row].timestamp)
+        
+        if chatSession[indexPath.row].senderId == self.currentUser!.uid{
+            print("they are equal")
+            cell.wrapperCellView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
+
+            if let sender = self.currentUser?.displayName{
+                cell.labelSenderName.text =  "sender: \(sender)"
+            }
+          
+        }else{
+        
+            cell.wrapperCellView.backgroundColor = UIColor.white
+            if let name = otherName{
+                cell.labelSenderName.text =  "sender: \(name)"
+            }
+        }
+        
+        
         cell.labelTime.text = dateString
+       
         return cell
     }
     
