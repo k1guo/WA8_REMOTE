@@ -92,7 +92,6 @@ class MainViewController: UIViewController {
                       self.mainScreen.tableViewChatLists.reloadData()
                   }
                 }
-                
                 self.currentUser = user
             }
         }

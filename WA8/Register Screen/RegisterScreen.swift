@@ -14,6 +14,9 @@ class RegisterScreen: UIView {
     var textFieldVerifyPassword:UITextField!
     var buttonRegister: UIButton!
     
+    var labelPhoto:UILabel!
+    var buttonTakePhoto: UIButton!
+    
     override init(frame: CGRect){
         super.init(frame: frame)
         self.backgroundColor = .white
@@ -23,7 +26,31 @@ class RegisterScreen: UIView {
         setupButtonRegister()
         setupTextFieldVerifyPassword()
         
+        setuplabelPhoto()
+        setupbuttonTakePhoto()
+        
         initConstraints()
+    }
+    
+    func setuplabelPhoto(){
+        labelPhoto = UILabel()
+        labelPhoto.text = "Add Profile Photo"
+        labelPhoto.font = UIFont.boldSystemFont(ofSize: 14)
+        labelPhoto.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(labelPhoto)
+    }
+       
+    func setupbuttonTakePhoto(){
+        buttonTakePhoto = UIButton(type: .system)
+        buttonTakePhoto.setTitle("", for: .normal)
+        buttonTakePhoto.setImage(UIImage(systemName: "camera.fill")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        //buttonTakePhoto.setImage(UIImage(systemName: "camera.fill")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        buttonTakePhoto.contentHorizontalAlignment = .fill
+        buttonTakePhoto.contentVerticalAlignment = .fill
+        buttonTakePhoto.imageView?.contentMode = .scaleAspectFit
+        buttonTakePhoto.showsMenuAsPrimaryAction = true
+        buttonTakePhoto.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(buttonTakePhoto)
     }
     
     func setuptextFieldName(){
@@ -88,9 +115,18 @@ class RegisterScreen: UIView {
             textFieldVerifyPassword.topAnchor.constraint(equalTo: textFieldPassword.bottomAnchor,constant: 16),
             textFieldVerifyPassword.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
             textFieldVerifyPassword.widthAnchor.constraint(equalTo: self.safeAreaLayoutGuide.widthAnchor, multiplier: 0.9),
+            
+            buttonTakePhoto.topAnchor.constraint(equalTo: textFieldVerifyPassword.bottomAnchor, constant: 16),
+            buttonTakePhoto.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
+            buttonTakePhoto.widthAnchor.constraint(equalToConstant: 100),
+            buttonTakePhoto.heightAnchor.constraint(equalToConstant: 100),
+                        
+            labelPhoto.topAnchor.constraint(equalTo: buttonTakePhoto.bottomAnchor),
+            labelPhoto.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
+                        
 
             
-            buttonRegister.topAnchor.constraint(equalTo: textFieldVerifyPassword.bottomAnchor, constant: 32),
+            buttonRegister.topAnchor.constraint(equalTo: labelPhoto.bottomAnchor, constant: 32),
             buttonRegister.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
         ])
     }

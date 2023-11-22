@@ -32,6 +32,7 @@
 		BC06648D2B055DC600B1F296 /* Configs.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC06648C2B055DC600B1F296 /* Configs.swift */; };
 		BC2761472B09D30D00218308 /* ChatData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2761462B09D30D00218308 /* ChatData.swift */; };
 		BC27614E2B0C26B200218308 /* ChatDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC27614D2B0C26B200218308 /* ChatDetailTableViewCell.swift */; };
+		BC4755A52B0D71DF00516E32 /* PhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4755A42B0D71DF00516E32 /* PhotoManager.swift */; };
 		BC98EAEB2B0808FE001D5738 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC98EAEA2B0808FE001D5738 /* MainViewController.swift */; };
 		BC98EAED2B080942001D5738 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC98EAEC2B080942001D5738 /* MainScreen.swift */; };
 		BC98EAF02B083658001D5738 /* ChatDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC98EAEF2B083658001D5738 /* ChatDetailScreen.swift */; };
@@ -62,6 +63,7 @@
 		BC06648C2B055DC600B1F296 /* Configs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configs.swift; sourceTree = "<group>"; };
 		BC2761462B09D30D00218308 /* ChatData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatData.swift; sourceTree = "<group>"; };
 		BC27614D2B0C26B200218308 /* ChatDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatDetailTableViewCell.swift; sourceTree = "<group>"; };
+		BC4755A42B0D71DF00516E32 /* PhotoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoManager.swift; sourceTree = "<group>"; };
 		BC98EAEA2B0808FE001D5738 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		BC98EAEC2B080942001D5738 /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
 		BC98EAEF2B083658001D5738 /* ChatDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDetailScreen.swift; sourceTree = "<group>"; };
@@ -142,10 +144,11 @@
 		BC0664642B04ABD100B1F296 /* Register Screen */ = {
 			isa = PBXGroup;
 			children = (
-				BC0664652B04ABF000B1F296 /* RegisterScreen.swift */,
+				BC4755A82B0EBFA600516E32 /* View */,
 				BC0664672B04AC0100B1F296 /* RegisterViewController.swift */,
 				BC0664742B04B5C500B1F296 /* RegisterFirebaseManager.swift */,
 				BC0664842B05551000B1F296 /* RegisterProgressIndicatorManager.swift */,
+				BC4755A42B0D71DF00516E32 /* PhotoManager.swift */,
 			);
 			path = "Register Screen";
 			sourceTree = "<group>";
@@ -168,12 +171,45 @@
 			path = "Data Models";
 			sourceTree = "<group>";
 		};
+		BC4755A62B0EBF6500516E32 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BC98EAEF2B083658001D5738 /* ChatDetailScreen.swift */,
+				BC27614D2B0C26B200218308 /* ChatDetailTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BC4755A72B0EBF8E00516E32 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BC98EAEC2B080942001D5738 /* MainScreen.swift */,
+				BC06647D2B0550B200B1F296 /* ContactsTableViewCell.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		BC4755A82B0EBFA600516E32 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BC0664652B04ABF000B1F296 /* RegisterScreen.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		BC4755A92B0EC03F00516E32 /* MainScreenFirebaseManager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MainScreenFirebaseManager;
+			sourceTree = "<group>";
+		};
 		BC98EAE92B0808B7001D5738 /* Main Screen */ = {
 			isa = PBXGroup;
 			children = (
-				BC06647D2B0550B200B1F296 /* ContactsTableViewCell.swift */,
+				BC4755A92B0EC03F00516E32 /* MainScreenFirebaseManager */,
+				BC4755A72B0EBF8E00516E32 /* View */,
 				BC98EAEA2B0808FE001D5738 /* MainViewController.swift */,
-				BC98EAEC2B080942001D5738 /* MainScreen.swift */,
 			);
 			path = "Main Screen";
 			sourceTree = "<group>";
@@ -181,9 +217,8 @@
 		BC98EAEE2B083630001D5738 /* Chat Detail */ = {
 			isa = PBXGroup;
 			children = (
+				BC4755A62B0EBF6500516E32 /* View */,
 				BC98EAF12B08366E001D5738 /* ChatDetailController.swift */,
-				BC27614D2B0C26B200218308 /* ChatDetailTableViewCell.swift */,
-				BC98EAEF2B083658001D5738 /* ChatDetailScreen.swift */,
 			);
 			path = "Chat Detail";
 			sourceTree = "<group>";
@@ -271,6 +306,7 @@
 			files = (
 				BC2761472B09D30D00218308 /* ChatData.swift in Sources */,
 				BC98EAED2B080942001D5738 /* MainScreen.swift in Sources */,
+				BC4755A52B0D71DF00516E32 /* PhotoManager.swift in Sources */,
 				BC06648B2B055C7E00B1F296 /* Contact.swift in Sources */,
 				2AFB9D392B0BF09300E5E7AB /* RightBarButtonManager.swift in Sources */,
 				BC06647E2B0550B200B1F296 /* ContactsTableViewCell.swift in Sources */,

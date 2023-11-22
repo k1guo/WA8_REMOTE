@@ -11,87 +11,33 @@ import UIKit
 
 extension RegisterViewController{
     
-//    func registerNewAccount(){
-//        //MARK: create a Firebase user with email and password...
-//        if let name = registerScreen.textFieldName.text,
-//           let email = registerScreen.textFieldEmail.text,
-//           let password = registerScreen.textFieldPassword.text,
-//           let reEnterPassword = registerScreen.textFieldVerifyPassword.text{
-//
-//
-//            if(name.isEmpty == true){
-//                return showAlertText(text: "Name is empty!")
-//            }
-//
-//            if(email.isEmpty == true){
-//                return showAlertText(text: "Email is empty!")
-//            }
-//
-//            if(password.isEmpty == true){
-//                return showAlertText(text: "Password is empty!")
-//            }
-//
-//            if(password != reEnterPassword){
-//                return showAlertText(text: "Two password not match!")
-//            }
-//
-//            if(password.count < 6){
-//                return showAlertText(text: "The password should have at least 6 digit!")
-//            }
-//
-//            if isValidEmail(email){
-//                showActivityIndicator()
-//                Auth.auth().createUser(withEmail: email, password: password, completion: {result, error in
-//                    self.hideActivityIndicator()
-//                    if error == nil{
-////                        register sucess and get this new created user's u id
-//                        let uid = result!.user.uid
-//
-//                        //MARK: the user creation is successful...
-//                        let contact = Contact(name: name, email: email, userId: uid )
-//
-//
-//                            let collectionContacts = self.database
-//                                   .collection("users")
-//                                   .document(name)
-//
-//
-//                               do{
-//
-//                                   try collectionContacts.setData([
-//                                    "email": email,
-//                                    "name": name,
-//                                    "userId": uid,
-//
-//                                   ]) { error in
-//                                       if error == nil{
-//                                           print("store success")
-//                                           self.showSuccessText(text: "Success")
-//                                       }
-//                                   }
-//
-//                               }catch{
-//                                   print("Error adding document!")
-//                                   self.showAlertText(text: "Error adding document!")
-//                               }
-//                        self.setNameOfTheUserInFirebaseAuth(name: name)
-//                    }else{
-//                        //MARK: there is a error creating the user...
-//                        print(error)
-//                       // self.showAlertText(text: String(describing: error))
-//                        self.showAlertText(text: "This email address has been used!")
-//                    }
-//                })
-//            }else{
-//                showAlertText(text: " please enter valid email. ")
-//            }
-//            //Validations....
-//
-//        }
-//    }
+    func uploadProfilePhotoToStorage(){
+           var profilePhotoURL:URL?
+           
+           //MARK: Upload the profile photo if there is any...
+           if let image = pickedImage{
+               if let jpegData = image.jpegData(compressionQuality: 80){
+                   let storageRef = storage.reference()
+                   let imagesRepo = storageRef.child("imagesUsers")
+                   let imageRef = imagesRepo.child("\(NSUUID().uuidString).jpg")
+                   
+                   let uploadTask = imageRef.putData(jpegData, completion: {(metadata, error) in
+                       if error == nil{
+                           imageRef.downloadURL(completion: {(url, error) in
+                               if error == nil{
+                                   profilePhotoURL = url
+                                   self.registerNewAccount(photoURL: profilePhotoURL)
+                               }
+                           })
+                       }
+                   })
+               }
+           }else{
+               registerNewAccount(photoURL: profilePhotoURL)
+           }
+       }
     
-    
-    func registerNewAccount() {
+    func registerNewAccount(photoURL: URL?) {
         guard let name = registerScreen.textFieldName.text,
               let email = registerScreen.textFieldEmail.text,
               let password = registerScreen.textFieldPassword.text,
@@ -138,7 +84,7 @@ extension RegisterViewController{
                         } else {
                             print("Store success")
                             self.showSuccessText(text: "Registration successful")
-                            self.setNameOfTheUserInFirebaseAuth(name: name)
+                            self.setNameOfTheUserInFirebaseAuth(name: name, photoURL: photoURL)
                         }
                     }
                 } catch {
@@ -152,9 +98,12 @@ extension RegisterViewController{
     
     
     //MARK: We set the name of the user after we create the account...
-    func setNameOfTheUserInFirebaseAuth(name: String){
+    func setNameOfTheUserInFirebaseAuth(name: String,photoURL: URL?){
         let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
         changeRequest?.displayName = name
+        changeRequest?.photoURL = photoURL
+        print("\(photoURL)")
+        
         showActivityIndicator()
         changeRequest?.commitChanges(completion: {(error) in
             self.hideActivityIndicator()
