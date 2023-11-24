@@ -33,6 +33,9 @@
 		BC2761472B09D30D00218308 /* ChatData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2761462B09D30D00218308 /* ChatData.swift */; };
 		BC27614E2B0C26B200218308 /* ChatDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC27614D2B0C26B200218308 /* ChatDetailTableViewCell.swift */; };
 		BC4755A52B0D71DF00516E32 /* PhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4755A42B0D71DF00516E32 /* PhotoManager.swift */; };
+		BC4755AD2B1139C600516E32 /* ImageViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4755AC2B1139C600516E32 /* ImageViewUtils.swift */; };
+		BC4755B02B11520400516E32 /* EditProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4755AF2B11520400516E32 /* EditProfile.swift */; };
+		BC4755B22B11523000516E32 /* EditProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4755B12B11523000516E32 /* EditProfileController.swift */; };
 		BC98EAEB2B0808FE001D5738 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC98EAEA2B0808FE001D5738 /* MainViewController.swift */; };
 		BC98EAED2B080942001D5738 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC98EAEC2B080942001D5738 /* MainScreen.swift */; };
 		BC98EAF02B083658001D5738 /* ChatDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC98EAEF2B083658001D5738 /* ChatDetailScreen.swift */; };
@@ -64,6 +67,9 @@
 		BC2761462B09D30D00218308 /* ChatData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatData.swift; sourceTree = "<group>"; };
 		BC27614D2B0C26B200218308 /* ChatDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatDetailTableViewCell.swift; sourceTree = "<group>"; };
 		BC4755A42B0D71DF00516E32 /* PhotoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoManager.swift; sourceTree = "<group>"; };
+		BC4755AC2B1139C600516E32 /* ImageViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewUtils.swift; sourceTree = "<group>"; };
+		BC4755AF2B11520400516E32 /* EditProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfile.swift; sourceTree = "<group>"; };
+		BC4755B12B11523000516E32 /* EditProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileController.swift; sourceTree = "<group>"; };
 		BC98EAEA2B0808FE001D5738 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		BC98EAEC2B080942001D5738 /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
 		BC98EAEF2B083658001D5738 /* ChatDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDetailScreen.swift; sourceTree = "<group>"; };
@@ -123,6 +129,7 @@
 		BC06644C2B04AA2300B1F296 /* WA8 */ = {
 			isa = PBXGroup;
 			children = (
+				BC4755AE2B1151D500516E32 /* Edit Profile Screen */,
 				2AFB9D332B0BF09300E5E7AB /* Login Cover Screen */,
 				BC98EAEE2B083630001D5738 /* Chat Detail */,
 				BC98EAE92B0808B7001D5738 /* Main Screen */,
@@ -137,6 +144,7 @@
 				BC06645B2B04AA2500B1F296 /* Info.plist */,
 				BC0664692B04B0DF00B1F296 /* GoogleService-Info.plist */,
 				BC06648C2B055DC600B1F296 /* Configs.swift */,
+				BC4755AC2B1139C600516E32 /* ImageViewUtils.swift */,
 			);
 			path = WA8;
 			sourceTree = "<group>";
@@ -195,6 +203,15 @@
 				BC0664652B04ABF000B1F296 /* RegisterScreen.swift */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		BC4755AE2B1151D500516E32 /* Edit Profile Screen */ = {
+			isa = PBXGroup;
+			children = (
+				BC4755AF2B11520400516E32 /* EditProfile.swift */,
+				BC4755B12B11523000516E32 /* EditProfileController.swift */,
+			);
+			path = "Edit Profile Screen";
 			sourceTree = "<group>";
 		};
 		BC98EAE92B0808B7001D5738 /* Main Screen */ = {
@@ -307,9 +324,12 @@
 				BC0664662B04ABF000B1F296 /* RegisterScreen.swift in Sources */,
 				BC0664852B05551000B1F296 /* RegisterProgressIndicatorManager.swift in Sources */,
 				BC06644E2B04AA2300B1F296 /* AppDelegate.swift in Sources */,
+				BC4755B02B11520400516E32 /* EditProfile.swift in Sources */,
 				BC27614E2B0C26B200218308 /* ChatDetailTableViewCell.swift in Sources */,
 				2AFB9D382B0BF09300E5E7AB /* ViewController.swift in Sources */,
+				BC4755AD2B1139C600516E32 /* ImageViewUtils.swift in Sources */,
 				2AFB9D3A2B0BF09300E5E7AB /* LoginCoverScreen.swift in Sources */,
+				BC4755B22B11523000516E32 /* EditProfileController.swift in Sources */,
 				2AFB9D3C2B0BF20500E5E7AB /* LoginProgressIndicatorManager.swift in Sources */,
 				BC0664832B0554CD00B1F296 /* ProgressSpinnerDelegate.swift in Sources */,
 				BC98EAF02B083658001D5738 /* ChatDetailScreen.swift in Sources */,

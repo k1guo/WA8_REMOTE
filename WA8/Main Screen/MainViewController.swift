@@ -6,11 +6,8 @@
 //
 
 import UIKit
-import FirebaseCore
 import FirebaseAuth
 import FirebaseFirestore
-import Foundation
-
 
 class MainViewController: UIViewController {
     
@@ -38,14 +35,20 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        title = "My Chat List"
-        navigationController?.navigationBar.prefersLargeTitles = true
+        title = "My Contact"
+        navigationController?.navigationBar.prefersLargeTitles = false
         
         mainScreen.tableViewChatLists.delegate = self
         mainScreen.tableViewChatLists.dataSource = self
         
         mainScreen.tableViewChatLists.separatorStyle = .none
+        
+        view.bringSubviewToFront(mainScreen.floatingButtonSetting)
+        
+        mainScreen.floatingButtonSetting.addTarget(self, action: #selector(settingButtonTapped), for: .touchUpInside)
     }
+    
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -64,12 +67,18 @@ class MainViewController: UIViewController {
     func handleUserLoggedIn(_ user: User) {
         print("User is logged in.")
         self.currentUser = user
+        mainScreen.labelText.text = "Let's Chat!"
+        if let url = self.currentUser?.photoURL{
+            self.mainScreen.currentUserPic.loadRemoteImage(from: url)
+        }
         setupLogoutButton()
         loadContacts(userName: user.displayName ?? "")
     }
 
     func handleUserLoggedOut() {
         print("User is not logged in.")
+        //MARK: Reset the profile pic...
+        self.mainScreen.currentUserPic.image = UIImage(systemName: "person.circle")?.withRenderingMode(.alwaysOriginal)
         // Handle user not logged in, like redirecting to login screen
     }
 
@@ -156,6 +165,13 @@ class MainViewController: UIViewController {
         logoutAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         self.present(logoutAlert, animated: true)
     }
+    
+    @objc func settingButtonTapped(){
+        let editScreen = EditProfileController()
+        self.navigationController?.pushViewController(editScreen, animated: true)
+        
+    }
+    
 }
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource{
@@ -170,7 +186,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        self.otherName = contactsList[indexPath.row].name
         let otherId = contactsList[indexPath.row].userId
         guard let currentId = self.currentUser?.uid else {
             //MARK: if no current user return something
