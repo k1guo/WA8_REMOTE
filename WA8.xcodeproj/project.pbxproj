@@ -197,17 +197,9 @@
 			name = View;
 			sourceTree = "<group>";
 		};
-		BC4755A92B0EC03F00516E32 /* MainScreenFirebaseManager */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = MainScreenFirebaseManager;
-			sourceTree = "<group>";
-		};
 		BC98EAE92B0808B7001D5738 /* Main Screen */ = {
 			isa = PBXGroup;
 			children = (
-				BC4755A92B0EC03F00516E32 /* MainScreenFirebaseManager */,
 				BC4755A72B0EBF8E00516E32 /* View */,
 				BC98EAEA2B0808FE001D5738 /* MainViewController.swift */,
 			);

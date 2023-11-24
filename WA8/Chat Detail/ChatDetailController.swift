@@ -26,7 +26,6 @@ class ChatDetailController: UIViewController {
     var chatIdentifier: String?
     
     var otherName:String?
-//    var chatData: ChatData?
     
     override func loadView() {
         view = chatScreen

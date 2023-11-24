@@ -8,63 +8,61 @@
 import UIKit
 
 class ChatDetailTableViewCell: UITableViewCell {
+    
+    var wrapperCellView: UIView!
+    var labelMessage: UILabel!
+    var labelTime: UILabel!
+    var labelSenderName: UILabel!
 
-        var wrapperCellView: UIView!
-        var labelMessage: UILabel!
-        var labelTime: UILabel!
-        var labelSenderName: UILabel!
-
-        
-        override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?){
-            super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?){
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
             
-            setupWrapperCellView()
-            setupLabelMessage()
-            setupLabelTime()
-            setupLabelSenderName()
+        setupWrapperCellView()
+        setupLabelMessage()
+        setupLabelTime()
+        setupLabelSenderName()
             
-            initConstraints()
-        }
+        initConstraints()
+    }
         
-        required init?(coder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
-        }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
         
-        func setupWrapperCellView(){
-            wrapperCellView = UIView() 
+    func setupWrapperCellView(){
+        wrapperCellView = UIView()
             
-            wrapperCellView.backgroundColor = .white
-            wrapperCellView.layer.cornerRadius = 6.0
-            wrapperCellView.layer.shadowColor = UIColor.gray.cgColor
-            wrapperCellView.layer.shadowOffset = .zero
-            wrapperCellView.layer.shadowRadius = 4.0
-            wrapperCellView.layer.shadowOpacity = 0.4
-            wrapperCellView.translatesAutoresizingMaskIntoConstraints = false
-            self.addSubview(wrapperCellView)
-        }
+        wrapperCellView.backgroundColor = .white
+        wrapperCellView.layer.cornerRadius = 6.0
+        wrapperCellView.layer.shadowColor = UIColor.gray.cgColor
+        wrapperCellView.layer.shadowOffset = .zero
+        wrapperCellView.layer.shadowRadius = 4.0
+        wrapperCellView.layer.shadowOpacity = 0.4
+        wrapperCellView.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(wrapperCellView)
+    }
         
         
     func setupLabelSenderName(){
         labelSenderName = UILabel()
         labelSenderName.font = UIFont.boldSystemFont(ofSize: 12)
         labelSenderName.translatesAutoresizingMaskIntoConstraints = false
-//        labelSenderName.addSubview(labelSenderName)
         wrapperCellView.addSubview(labelSenderName)
     }
     
-        func setupLabelMessage(){
-            labelMessage = UILabel()
-            labelMessage.font = UIFont.boldSystemFont(ofSize: 20)
-            labelMessage.translatesAutoresizingMaskIntoConstraints = false
-            wrapperCellView.addSubview(labelMessage)
-        }
+    func setupLabelMessage(){
+        labelMessage = UILabel()
+        labelMessage.font = UIFont.boldSystemFont(ofSize: 20)
+        labelMessage.translatesAutoresizingMaskIntoConstraints = false
+        wrapperCellView.addSubview(labelMessage)
+    }
         
-        func setupLabelTime(){
-            labelTime = UILabel()
-            labelTime.font = UIFont.boldSystemFont(ofSize: 12)
-            labelTime.translatesAutoresizingMaskIntoConstraints = false
-            wrapperCellView.addSubview(labelTime)
-        }
+    func setupLabelTime(){
+        labelTime = UILabel()
+        labelTime.font = UIFont.boldSystemFont(ofSize: 12)
+        labelTime.translatesAutoresizingMaskIntoConstraints = false
+        wrapperCellView.addSubview(labelTime)
+    }
 
     func initConstraints() {
         NSLayoutConstraint.activate([
@@ -91,15 +89,15 @@ class ChatDetailTableViewCell: UITableViewCell {
         ])
     }
 
-        override func awakeFromNib() {
-            super.awakeFromNib()
-        }
-
-        override func setSelected(_ selected: Bool, animated: Bool) {
-            super.setSelected(selected, animated: animated)
-        }
-
+    override func awakeFromNib() {
+        super.awakeFromNib()
     }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    }
+    
+}
 
 
 

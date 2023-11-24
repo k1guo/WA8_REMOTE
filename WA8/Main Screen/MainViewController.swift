@@ -48,53 +48,70 @@ class MainViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        handleAuth = Auth.auth().addStateDidChangeListener{ auth, user in
-            if user == nil{
-                print("user is empty")
-                
-            }else{
-                print("user not empty")
-                self.currentUser = user
-                //MARK: user is logged in...
-                let barIcon = UIBarButtonItem(
-                    image: UIImage(systemName: "rectangle.portrait.and.arrow.forward"),
-                    style: .plain,
-                    target: self,
-                    action: #selector(self.onLogOutBarButtonTapped)
-                )
-                let barText = UIBarButtonItem(
-                    title: "Logout",
-                    style: .plain,
-                    target: self,
-                    action: #selector(self.onLogOutBarButtonTapped)
-                )
-                
-                self.navigationItem.rightBarButtonItems = [barIcon, barText]
-                
-//                这个是现在登录的这个用户的名字
-                    
-                self.database.collection("users").whereField("name", isNotEqualTo:self.currentUser?.displayName! ).getDocuments() { (querySnapshot, err) in
-                  if let err = err {
-                    print("Error getting documents: \(err)")
-                  } else {
-                      self.contactsList.removeAll()
-                      for document in querySnapshot!.documents {
-                          do{
-                              let contact  = try document.data(as: Contact.self)
-                              self.contactsList.append(contact)
-                           
-                          }catch{
-                              print(error)
-                          }
-                    }
-                      print("print the contacts list     !")
-                      self.mainScreen.tableViewChatLists.reloadData()
-                  }
-                }
+        super.viewWillAppear(animated)
+        
+        handleAuth = Auth.auth().addStateDidChangeListener { [weak self] auth, user in
+            guard let strongSelf = self else { return }
+            
+            if let user = user {
+                strongSelf.handleUserLoggedIn(user)
+            } else {
+                strongSelf.handleUserLoggedOut()
             }
         }
     }
-    
+
+    func handleUserLoggedIn(_ user: User) {
+        print("User is logged in.")
+        self.currentUser = user
+        setupLogoutButton()
+        loadContacts(userName: user.displayName ?? "")
+    }
+
+    func handleUserLoggedOut() {
+        print("User is not logged in.")
+        // Handle user not logged in, like redirecting to login screen
+    }
+
+    func setupLogoutButton() {
+        let barIcon = UIBarButtonItem(
+            image: UIImage(systemName: "rectangle.portrait.and.arrow.forward"),
+            style: .plain,
+            target: self,
+            action: #selector(self.onLogOutBarButtonTapped)
+        )
+        let barText = UIBarButtonItem(
+            title: "Logout",
+            style: .plain,
+            target: self,
+            action: #selector(self.onLogOutBarButtonTapped)
+        )
+        self.navigationItem.rightBarButtonItems = [barIcon, barText]
+    }
+
+    func loadContacts(userName: String) {
+        database.collection("users").whereField("name", isNotEqualTo: userName).getDocuments { [weak self] (querySnapshot, err) in
+            
+            //MARK: let controllerSelf = self : self is this page's controller
+            guard let controllerSelf = self else { return }
+            
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                controllerSelf.contactsList.removeAll()
+                for document in querySnapshot!.documents {
+                    do {
+                        let contact = try document.data(as: Contact.self)
+                        controllerSelf.contactsList.append(contact)
+                    } catch {
+                        print(error)
+                    }
+                }
+                controllerSelf.mainScreen.tableViewChatLists.reloadData()
+            }
+        }
+    }
+
     func getAndReloadMessage(){
         let refDoc = self.database.collection("chats").document(self.chatIdentifier!).collection("chatDetail")
         refDoc.getDocuments { (querySnapshot, error) in
@@ -102,20 +119,20 @@ class MainViewController: UIViewController {
                 // error
                 print("Error getting documents: \(error)")
             } else {
-//                else create a new database for new chat session
-                    print("No chats found in chatDetail collection.")
+                //MARK: else create a new database for new chat session
+                print("No chats found in chatDetail collection.")
     
-                    self.database.collection("chats").document(self.chatIdentifier!).setData([:]) { error in
-                        if let error = error {
-                            print("Error creating new chat session: \(error)")
-                        } else {
-                            print("New chat session created successfully with ID: \(self.chatIdentifier)")
-                        }
-                }
+                self.database.collection("chats").document(self.chatIdentifier!).setData([:]) { error in
+                    if let error = error {
+                        print("Error creating new chat session: \(error)")
+                    } else {
+                        print("New chat session created successfully.")
+                    }
             }
         }
+    }
     
-//        pop to new screen
+        //MARK: pop to new screen
         let chatScreen = ChatDetailController()
         chatScreen.chatIdentifier=self.chatIdentifier
         chatScreen.currentUser = self.currentUser
@@ -139,7 +156,6 @@ class MainViewController: UIViewController {
         logoutAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         self.present(logoutAlert, animated: true)
     }
-    
 }
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource{
@@ -154,15 +170,15 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         let otherId = contactsList[indexPath.row].userId
-        self.otherName = contactsList[indexPath.row].name
-        //create new id and this id sort by their uid
-        if let uwId = self.currentUser?.uid{
-            let userIds = [otherId, uwId]
-            let sortedIds = userIds.sorted()
-            self.chatIdentifier = sortedIds.joined(separator: "_")
-            self.getAndReloadMessage()
-                }
+        guard let currentId = self.currentUser?.uid else {
+            //MARK: if no current user return something
+            return
         }
- 
+        //MARK: create new id and this id sort by their uid
+        let sortedIds = [otherId, currentId].sorted()
+        self.chatIdentifier = sortedIds.joined(separator: "_")
+        self.getAndReloadMessage()
+        }
 }
