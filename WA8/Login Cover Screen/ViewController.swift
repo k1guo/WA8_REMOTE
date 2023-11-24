@@ -16,7 +16,6 @@ class ViewController: UIViewController {
 
     let childProgressView = ProgressSpinnerViewController()
     
-    
     let database = Firestore.firestore()
     
     var handleAuth: AuthStateDidChangeListenerHandle?
@@ -39,9 +38,7 @@ class ViewController: UIViewController {
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboardOnTap))
         tapRecognizer.cancelsTouchesInView = false
         view.addGestureRecognizer(tapRecognizer)
-
     }
-
 
     //MARK: Hide Keyboard...
     @objc func hideKeyboardOnTap(){
@@ -49,14 +46,10 @@ class ViewController: UIViewController {
         view.endEditing(true)
     }
     
-    
     @objc func buttonSignup(){
         let registerScreen = RegisterViewController()
         self.navigationController?.pushViewController(registerScreen, animated: true)
     }
-    
-    
-
     
     @objc func buttonLogin(){
         if let email = mainScreen.textFieldName.text,
@@ -65,7 +58,6 @@ class ViewController: UIViewController {
                 if !isValidEmail(email){
                     showAlertText(text:"please enter valid email~~")
                 }
-                
                 self.signInToFirebase(email: email, password: password)
                 
             }else{
@@ -73,8 +65,6 @@ class ViewController: UIViewController {
             }
         }
     }
-    
-
     
     func isValidEmail(_ email: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
