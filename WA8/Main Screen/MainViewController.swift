@@ -72,7 +72,6 @@ class MainViewController: UIViewController {
                 self.navigationItem.rightBarButtonItems = [barIcon, barText]
                 
 //                这个是现在登录的这个用户的名字
-                print(self.currentUser?.displayName!)
                     
                 self.database.collection("users").whereField("name", isNotEqualTo:self.currentUser?.displayName! ).getDocuments() { (querySnapshot, err) in
                   if let err = err {
@@ -92,7 +91,6 @@ class MainViewController: UIViewController {
                       self.mainScreen.tableViewChatLists.reloadData()
                   }
                 }
-                self.currentUser = user
             }
         }
     }
@@ -139,7 +137,6 @@ class MainViewController: UIViewController {
             })
         )
         logoutAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        
         self.present(logoutAlert, animated: true)
     }
     
@@ -159,9 +156,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let otherId = contactsList[indexPath.row].userId
         self.otherName = contactsList[indexPath.row].name
-      
+        //create new id and this id sort by their uid
         if let uwId = self.currentUser?.uid{
-//           create new id and this id sort by their uid
             let userIds = [otherId, uwId]
             let sortedIds = userIds.sorted()
             self.chatIdentifier = sortedIds.joined(separator: "_")

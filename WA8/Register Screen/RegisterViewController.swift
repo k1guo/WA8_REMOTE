@@ -68,7 +68,7 @@ class RegisterViewController: UIViewController {
         //MARK: creating a new user on Firebase...
         uploadProfilePhotoToStorage()
     }
-    
+
     //MARK: take Photo using Camera...
     func pickUsingCamera(){
         let cameraController = UIImagePickerController()

@@ -11,7 +11,6 @@ struct ChatMessage: Codable {
     var senderId: String
     var message: String
     var timestamp: Date
-
 }
 
 

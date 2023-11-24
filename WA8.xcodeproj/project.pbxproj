@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2AFB9D382B0BF09300E5E7AB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFB9D342B0BF09300E5E7AB /* ViewController.swift */; };
-		2AFB9D392B0BF09300E5E7AB /* RightBarButtonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFB9D352B0BF09300E5E7AB /* RightBarButtonManager.swift */; };
+		2AFB9D392B0BF09300E5E7AB /* LoginFirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFB9D352B0BF09300E5E7AB /* LoginFirebaseManager.swift */; };
 		2AFB9D3A2B0BF09300E5E7AB /* LoginCoverScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFB9D372B0BF09300E5E7AB /* LoginCoverScreen.swift */; };
 		2AFB9D3C2B0BF20500E5E7AB /* LoginProgressIndicatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFB9D3B2B0BF20500E5E7AB /* LoginProgressIndicatorManager.swift */; };
 		BC06644E2B04AA2300B1F296 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC06644D2B04AA2300B1F296 /* AppDelegate.swift */; };
@@ -41,7 +41,7 @@
 
 /* Begin PBXFileReference section */
 		2AFB9D342B0BF09300E5E7AB /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		2AFB9D352B0BF09300E5E7AB /* RightBarButtonManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightBarButtonManager.swift; sourceTree = "<group>"; };
+		2AFB9D352B0BF09300E5E7AB /* LoginFirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginFirebaseManager.swift; sourceTree = "<group>"; };
 		2AFB9D372B0BF09300E5E7AB /* LoginCoverScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCoverScreen.swift; sourceTree = "<group>"; };
 		2AFB9D3B2B0BF20500E5E7AB /* LoginProgressIndicatorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginProgressIndicatorManager.swift; sourceTree = "<group>"; };
 		BC06644A2B04AA2300B1F296 /* WA8.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WA8.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -52,7 +52,7 @@
 		BC0664592B04AA2500B1F296 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BC06645B2B04AA2500B1F296 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BC0664652B04ABF000B1F296 /* RegisterScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterScreen.swift; sourceTree = "<group>"; };
-		BC0664672B04AC0100B1F296 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		BC0664672B04AC0100B1F296 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; usesTabs = 0; };
 		BC0664692B04B0DF00B1F296 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BC0664742B04B5C500B1F296 /* RegisterFirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterFirebaseManager.swift; sourceTree = "<group>"; };
 		BC06647D2B0550B200B1F296 /* ContactsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTableViewCell.swift; sourceTree = "<group>"; };
@@ -90,7 +90,7 @@
 			children = (
 				2AFB9D3B2B0BF20500E5E7AB /* LoginProgressIndicatorManager.swift */,
 				2AFB9D342B0BF09300E5E7AB /* ViewController.swift */,
-				2AFB9D352B0BF09300E5E7AB /* RightBarButtonManager.swift */,
+				2AFB9D352B0BF09300E5E7AB /* LoginFirebaseManager.swift */,
 				2AFB9D362B0BF09300E5E7AB /* Views */,
 			);
 			path = "Login Cover Screen";
@@ -308,7 +308,7 @@
 				BC98EAED2B080942001D5738 /* MainScreen.swift in Sources */,
 				BC4755A52B0D71DF00516E32 /* PhotoManager.swift in Sources */,
 				BC06648B2B055C7E00B1F296 /* Contact.swift in Sources */,
-				2AFB9D392B0BF09300E5E7AB /* RightBarButtonManager.swift in Sources */,
+				2AFB9D392B0BF09300E5E7AB /* LoginFirebaseManager.swift in Sources */,
 				BC06647E2B0550B200B1F296 /* ContactsTableViewCell.swift in Sources */,
 				BC0664752B04B5C500B1F296 /* RegisterFirebaseManager.swift in Sources */,
 				BC0664812B0554AD00B1F296 /* ProgressSpinnerViewController.swift in Sources */,

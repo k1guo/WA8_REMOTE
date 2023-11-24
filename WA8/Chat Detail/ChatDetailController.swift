@@ -41,12 +41,9 @@ class ChatDetailController: UIViewController {
         chatScreen.chatDetailTable.delegate = self
         chatScreen.chatDetailTable.dataSource = self
 
-        //MARK: removing the separator line...
         chatScreen.chatDetailTable.separatorStyle = .none
-//        self.chatSession.reload()
         self.chatScreen.chatDetailTable.reloadData()
-        
-  
+    
         chatScreen.buttonSent.addTarget(self, action: #selector(onSentButtonTapped), for: .touchUpInside)
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboardOnTap))
         tapRecognizer.cancelsTouchesInView = false
@@ -54,13 +51,11 @@ class ChatDetailController: UIViewController {
 
     }
 
-
     //MARK: Hide Keyboard...
     @objc func hideKeyboardOnTap(){
         //MARK: removing the keyboard from screen...
         view.endEditing(true)
     }
-    
     
     func scrollToBottom() {
         DispatchQueue.main.async {
@@ -83,14 +78,12 @@ class ChatDetailController: UIViewController {
             }else{
                 print("user not empty12345")
                 self.currentUser = user
-        
                 self.database.collection("chats").document(self.chatIdentifier!).collection("chatDetail").getDocuments() { (querySnapshot, err) in
                   if let err = err {
                     print("Error getting documents: \(err)")
                   } else {
                       self.chatSession.removeAll()
                       for document in querySnapshot!.documents {
-
                           do{
                               let info = try document.data(as: ChatMessage.self)
                               self.chatSession.append(info)
@@ -100,35 +93,29 @@ class ChatDetailController: UIViewController {
                               print(error)
                           }
                     }
-
                       print("print the message list     !")
                       self.chatScreen.chatDetailTable.reloadData()
                       self.scrollToBottom()
                   }
                 }
-   
             }
-            
         }
         scrollToBottom()
     }
     
 
     @objc func onSentButtonTapped(){
-      
         if let senderId = currentUser?.uid,let message = chatScreen.textField.text{
         let newMessage = ChatMessage(senderId: senderId, message: message, timestamp:  Date())
         print("here")
         print(newMessage.self)
 
-            // 将 ChatMessage 转换
              let messageData: [String: Any] = [
                  "senderId": newMessage.senderId,
                  "message": newMessage.message,
                  "timestamp": Timestamp(date: newMessage.timestamp)
              ]
 
-             // 存储数据
             let refDoc = self.database.collection("chats").document(self.chatIdentifier!)
             refDoc.collection("chatDetail").document().setData(messageData, merge: true) { error in
                  if let error = error {
@@ -140,12 +127,8 @@ class ChatDetailController: UIViewController {
                      print("Document successfully written!")
                  }
              }
-            
-
         }
-
     }
-    
 }
     
 
@@ -171,26 +154,18 @@ extension ChatDetailController: UITableViewDelegate, UITableViewDataSource{
         if chatSession[indexPath.row].senderId == self.currentUser!.uid{
             print("they are equal")
             cell.wrapperCellView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
-
             if let sender = self.currentUser?.displayName{
                 cell.labelSenderName.text =  "sender: \(sender)"
             }
-          
         }else{
-        
             cell.wrapperCellView.backgroundColor = UIColor.white
             if let name = otherName{
                 cell.labelSenderName.text =  "sender: \(name)"
             }
         }
-        
-        
         cell.labelTime.text = dateString
-       
         return cell
     }
-    
-
 }
 
 

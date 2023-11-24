@@ -33,7 +33,6 @@ class ChatDetailTableViewCell: UITableViewCell {
         func setupWrapperCellView(){
             wrapperCellView = UIView() 
             
-            //working with the shadows and colors...
             wrapperCellView.backgroundColor = .white
             wrapperCellView.layer.cornerRadius = 6.0
             wrapperCellView.layer.shadowColor = UIColor.gray.cgColor
@@ -66,81 +65,38 @@ class ChatDetailTableViewCell: UITableViewCell {
             labelTime.translatesAutoresizingMaskIntoConstraints = false
             wrapperCellView.addSubview(labelTime)
         }
-        
-
-        
-//        func initConstraints(){
-//            NSLayoutConstraint.activate([
-//
-//                wrapperCellView.topAnchor.constraint(equalTo: self.topAnchor,constant: 10),
-//                wrapperCellView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
-//                wrapperCellView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10),
-//                wrapperCellView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
-//
-//
-//                labelSenderName.topAnchor.constraint(equalTo: wrapperCellView.topAnchor, constant: 12),
-//                labelSenderName.leadingAnchor.constraint(equalTo: wrapperCellView.leadingAnchor, constant: 16),
-//                labelSenderName.heightAnchor.constraint(equalToConstant: 20),
-//                labelSenderName.widthAnchor.constraint(lessThanOrEqualTo: wrapperCellView.widthAnchor),
-//
-//
-//                labelMessage.topAnchor.constraint(equalTo: labelSenderName.bottomAnchor, constant: 12),
-//                       labelMessage.leadingAnchor.constraint(equalTo: wrapperCellView.leadingAnchor, constant: 16), // Changed to wrapperCellView.leadingAnchor
-//                labelMessage.heightAnchor.constraint(equalToConstant: 20),
-//                labelMessage.widthAnchor.constraint(lessThanOrEqualTo: wrapperCellView.widthAnchor),
-//
-//
-//                labelTime.topAnchor.constraint(equalTo: labelMessage.bottomAnchor, constant: 10),
-//                labelTime.leadingAnchor.constraint(equalTo: wrapperCellView.leadingAnchor, constant: 16),
-//                labelTime.heightAnchor.constraint(equalToConstant: 16),
-//                labelTime.widthAnchor.constraint(lessThanOrEqualTo: labelMessage.widthAnchor),
-//
-//
-//
-//
-//                wrapperCellView.heightAnchor.constraint(equalToConstant: 92)
-//            ])
-//        }
 
     func initConstraints() {
         NSLayoutConstraint.activate([
-            // wrapperCellView constraints
             wrapperCellView.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
             wrapperCellView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
             wrapperCellView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10),
             wrapperCellView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
             
-            // labelMessage constraints
             labelMessage.topAnchor.constraint(equalTo: wrapperCellView.topAnchor, constant: 12),
             labelMessage.leadingAnchor.constraint(equalTo: wrapperCellView.leadingAnchor, constant: 16),
             labelMessage.trailingAnchor.constraint(equalTo: wrapperCellView.trailingAnchor, constant: -16),
             labelMessage.heightAnchor.constraint(equalToConstant: 20),
             
-            // labelTime constraints
             labelTime.topAnchor.constraint(equalTo: labelMessage.bottomAnchor, constant: 10),
             labelTime.leadingAnchor.constraint(equalTo: wrapperCellView.leadingAnchor, constant: 16),
             labelTime.heightAnchor.constraint(equalToConstant: 16),
             
-            // labelSenderName constraints
             labelSenderName.topAnchor.constraint(equalTo: labelMessage.bottomAnchor, constant: 10),
-            labelSenderName.leadingAnchor.constraint(equalTo: labelTime.trailingAnchor, constant: 10), // Adjust based on your layout
+            labelSenderName.leadingAnchor.constraint(equalTo: labelTime.trailingAnchor, constant: 10),
             labelSenderName.heightAnchor.constraint(equalToConstant: 16),
             labelSenderName.trailingAnchor.constraint(lessThanOrEqualTo: wrapperCellView.trailingAnchor, constant: -16),
 
-            // Adjusting the height of wrapperCellView if necessary
-            wrapperCellView.heightAnchor.constraint(greaterThanOrEqualToConstant: 70) // Adjust based on content
+            wrapperCellView.heightAnchor.constraint(greaterThanOrEqualToConstant: 70)
         ])
     }
 
         override func awakeFromNib() {
             super.awakeFromNib()
-            // Initialization code
         }
 
         override func setSelected(_ selected: Bool, animated: Bool) {
             super.setSelected(selected, animated: animated)
-
-            // Configure the view for the selected state
         }
 
     }

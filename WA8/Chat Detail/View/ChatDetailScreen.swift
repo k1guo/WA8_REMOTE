@@ -10,12 +10,9 @@ import UIKit
 class ChatDetailScreen: UIView {
 
     var contentWrapper:UIScrollView!
-
     var bottomAddView:UIView!
     var textField:UITextView!
     var buttonSent:UIButton!
-
-    
     
     var chatDetailTable: UITableView!
 
@@ -50,7 +47,6 @@ class ChatDetailScreen: UIView {
         textField.layer.backgroundColor = UIColor.lightGray.cgColor
         textField.text = ""
         textField.font = UIFont.systemFont(ofSize:18)
-        
         textField.translatesAutoresizingMaskIntoConstraints = false
         bottomAddView.addSubview(textField)
     }
@@ -82,7 +78,7 @@ class ChatDetailScreen: UIView {
             chatDetailTable.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 8),
             chatDetailTable.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -8),
             chatDetailTable.bottomAnchor.constraint(equalTo: bottomAddView.topAnchor),
-//       
+            
             bottomAddView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor,constant: -8),
             bottomAddView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 8),
             bottomAddView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -8),
