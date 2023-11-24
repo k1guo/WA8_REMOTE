@@ -8,13 +8,23 @@
 import UIKit
 
 class EditProfileController: UIViewController {
+    
+    let editScreen = EditProfile()
+    
+    override func loadView() {
+        view = editScreen
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        editScreen.buttonSave.addTarget(self, action: #selector(onSaveTapped), for: .touchUpInside)
     }
     
+    @objc func onSaveTapped(){
+        
+    }
 
     /*
     // MARK: - Navigation
