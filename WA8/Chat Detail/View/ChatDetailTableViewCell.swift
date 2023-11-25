@@ -13,6 +13,7 @@ class ChatDetailTableViewCell: UITableViewCell {
     var labelMessage: UILabel!
     var labelTime: UILabel!
     var labelSenderName: UILabel!
+    var messageImageView: UIImageView!
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?){
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -21,6 +22,7 @@ class ChatDetailTableViewCell: UITableViewCell {
         setupLabelMessage()
         setupLabelTime()
         setupLabelSenderName()
+        setupMessageImageView()
             
         initConstraints()
     }
@@ -29,9 +31,17 @@ class ChatDetailTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
         
+    func setupMessageImageView() {
+        messageImageView = UIImageView()
+        messageImageView.contentMode = .scaleAspectFit
+        messageImageView.layer.cornerRadius = 8
+        messageImageView.clipsToBounds = true
+        messageImageView.translatesAutoresizingMaskIntoConstraints = false
+        wrapperCellView.addSubview(messageImageView)
+        
+    }
     func setupWrapperCellView(){
         wrapperCellView = UIView()
-            
         wrapperCellView.backgroundColor = .white
         wrapperCellView.layer.cornerRadius = 6.0
         wrapperCellView.layer.shadowColor = UIColor.gray.cgColor
@@ -70,6 +80,12 @@ class ChatDetailTableViewCell: UITableViewCell {
             wrapperCellView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
             wrapperCellView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10),
             wrapperCellView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
+            
+            messageImageView.topAnchor.constraint(equalTo: wrapperCellView.topAnchor, constant: 12),
+            messageImageView.leadingAnchor.constraint(equalTo: wrapperCellView.leadingAnchor, constant: 16),
+            messageImageView.trailingAnchor.constraint(equalTo: wrapperCellView.trailingAnchor, constant: -16),
+            messageImageView.heightAnchor.constraint(equalToConstant: 30),
+            messageImageView.widthAnchor.constraint(equalToConstant: 30),
             
             labelMessage.topAnchor.constraint(equalTo: wrapperCellView.topAnchor, constant: 12),
             labelMessage.leadingAnchor.constraint(equalTo: wrapperCellView.leadingAnchor, constant: 16),

@@ -13,4 +13,21 @@ struct ChatMessage: Codable {
     var timestamp: Date
 }
 
+struct ChatImage: Codable {
+    var senderId: String
+    var imageUrl: URL
+    var timestamp: Date
+}
 
+enum ChatSessionContent: Codable{
+    case message(ChatMessage)
+    case image(ChatImage)
+    var timestamp: Date {
+        switch self {
+        case .message(let message):
+            return message.timestamp
+        case .image(let image):
+            return image.timestamp
+        }
+    }
+}
