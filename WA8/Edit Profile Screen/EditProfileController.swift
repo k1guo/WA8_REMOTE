@@ -50,7 +50,6 @@ class EditProfileController: UIViewController {
                     }
                 }.resume()
             }
-            
         }
         editScreen.buttonSave.addTarget(self, action: #selector(onSaveTapped), for: .touchUpInside)
         editScreen.buttonTakePhoto.menu = getMenuImagePicker()

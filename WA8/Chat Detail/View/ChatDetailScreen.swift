@@ -13,6 +13,7 @@ class ChatDetailScreen: UIView {
     var bottomAddView:UIView!
     var textField:UITextView!
     var buttonSent:UIButton!
+    var sentImageButton:UIButton!
     
     var chatDetailTable: UITableView!
 
@@ -25,7 +26,8 @@ class ChatDetailScreen: UIView {
         setupBottomAddView()
         setupTextField()
         setupButtonSent()
-        setupTableViewNotes() 
+        setupTableViewNotes()
+        setupSentImageButton()
 
         initConstraints()
     }
@@ -71,6 +73,15 @@ class ChatDetailScreen: UIView {
         buttonSent.translatesAutoresizingMaskIntoConstraints = false
         bottomAddView.addSubview(buttonSent)
     }
+    
+    func setupSentImageButton(){
+        sentImageButton = UIButton(type: .system)
+        sentImageButton.titleLabel?.font = .boldSystemFont(ofSize: 16)
+        sentImageButton.setImage(UIImage(systemName: "photo")?.withRenderingMode(.alwaysOriginal),for: .normal)
+        sentImageButton.translatesAutoresizingMaskIntoConstraints = false
+        bottomAddView.addSubview(sentImageButton)
+    }
+    
     func initConstraints(){
         NSLayoutConstraint.activate([
             
@@ -86,6 +97,11 @@ class ChatDetailScreen: UIView {
             buttonSent.bottomAnchor.constraint(equalTo: bottomAddView.bottomAnchor, constant: -8),
             buttonSent.leadingAnchor.constraint(equalTo: bottomAddView.leadingAnchor, constant: 4),
             buttonSent.trailingAnchor.constraint(equalTo: bottomAddView.trailingAnchor, constant: -4),
+            
+            sentImageButton.widthAnchor.constraint(equalToConstant: 38),
+            sentImageButton.heightAnchor.constraint(equalToConstant: 38),
+            sentImageButton.bottomAnchor.constraint(equalTo: bottomAddView.bottomAnchor, constant: -8),
+            sentImageButton.trailingAnchor.constraint(equalTo: bottomAddView.trailingAnchor,constant: -8),
             
             textField.bottomAnchor.constraint(equalTo: buttonSent.topAnchor, constant: -8),
             textField.leadingAnchor.constraint(equalTo: buttonSent.leadingAnchor, constant: 4),
