@@ -36,6 +36,7 @@
 		BC4755AD2B1139C600516E32 /* ImageViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4755AC2B1139C600516E32 /* ImageViewUtils.swift */; };
 		BC4755B02B11520400516E32 /* EditProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4755AF2B11520400516E32 /* EditProfile.swift */; };
 		BC4755B22B11523000516E32 /* EditProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4755B12B11523000516E32 /* EditProfileController.swift */; };
+		BC4755B42B116BE600516E32 /* EditProfileFirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4755B32B116BE600516E32 /* EditProfileFirebaseManager.swift */; };
 		BC98EAEB2B0808FE001D5738 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC98EAEA2B0808FE001D5738 /* MainViewController.swift */; };
 		BC98EAED2B080942001D5738 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC98EAEC2B080942001D5738 /* MainScreen.swift */; };
 		BC98EAF02B083658001D5738 /* ChatDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC98EAEF2B083658001D5738 /* ChatDetailScreen.swift */; };
@@ -70,6 +71,7 @@
 		BC4755AC2B1139C600516E32 /* ImageViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewUtils.swift; sourceTree = "<group>"; };
 		BC4755AF2B11520400516E32 /* EditProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfile.swift; sourceTree = "<group>"; };
 		BC4755B12B11523000516E32 /* EditProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileController.swift; sourceTree = "<group>"; };
+		BC4755B32B116BE600516E32 /* EditProfileFirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileFirebaseManager.swift; sourceTree = "<group>"; };
 		BC98EAEA2B0808FE001D5738 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		BC98EAEC2B080942001D5738 /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
 		BC98EAEF2B083658001D5738 /* ChatDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDetailScreen.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 			children = (
 				BC4755AF2B11520400516E32 /* EditProfile.swift */,
 				BC4755B12B11523000516E32 /* EditProfileController.swift */,
+				BC4755B32B116BE600516E32 /* EditProfileFirebaseManager.swift */,
 			);
 			path = "Edit Profile Screen";
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 				BC4755B02B11520400516E32 /* EditProfile.swift in Sources */,
 				BC27614E2B0C26B200218308 /* ChatDetailTableViewCell.swift in Sources */,
 				2AFB9D382B0BF09300E5E7AB /* ViewController.swift in Sources */,
+				BC4755B42B116BE600516E32 /* EditProfileFirebaseManager.swift in Sources */,
 				BC4755AD2B1139C600516E32 /* ImageViewUtils.swift in Sources */,
 				2AFB9D3A2B0BF09300E5E7AB /* LoginCoverScreen.swift in Sources */,
 				BC4755B22B11523000516E32 /* EditProfileController.swift in Sources */,
