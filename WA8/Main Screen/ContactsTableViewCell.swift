@@ -30,21 +30,16 @@ class ContactsTableViewCell: UITableViewCell {
     }
     
     func setupWrapperCellView(){
-        wrapperCellView = UIView() // 应该是 UIView 而不是 UITableViewCell
-
-            // 设定背景和颜色
-            wrapperCellView.backgroundColor = UIColor.systemBackground // 适应暗模式和亮模式
-            wrapperCellView.layer.cornerRadius = 10.0 // 微信和 WhatsApp 风格通常使用轻微的圆角
-
-            // 设置阴影 - 根据您的设计需求，您可以选择保留或移除阴影
-            // 如果想要更扁平化的风格，可以考虑移除阴影
-            wrapperCellView.layer.shadowColor = UIColor.gray.cgColor
-            wrapperCellView.layer.shadowOffset = CGSize(width: 0, height: 2) // 微调阴影的偏移
-            wrapperCellView.layer.shadowRadius = 4.0
-            wrapperCellView.layer.shadowOpacity = 0.2 // 降低阴影的透明度以使其更加微妙
-
-            wrapperCellView.translatesAutoresizingMaskIntoConstraints = false
-            self.addSubview(wrapperCellView)
+        wrapperCellView = UIView()
+        wrapperCellView.backgroundColor = UIColor.systemBackground
+        wrapperCellView.layer.cornerRadius = 10.0
+        wrapperCellView.layer.shadowColor = UIColor.gray.cgColor
+        wrapperCellView.layer.shadowOffset = CGSize(width: 0, height: 2)
+        wrapperCellView.layer.shadowRadius = 4.0
+        wrapperCellView.layer.shadowOpacity = 0.2
+        
+        wrapperCellView.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(wrapperCellView)
     }
     
     func setupLabelName(){

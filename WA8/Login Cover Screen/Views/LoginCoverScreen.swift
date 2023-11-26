@@ -76,18 +76,32 @@ class LoginCoverScreen: UIView {
         self.addSubview(registerLabel)
     }
     func setupButtonLogin(){
-        buttonLogin = UIButton(type: .system)
+        buttonLogin = UIButton()
         buttonLogin.setTitle("Login", for: .normal)
-        buttonLogin.titleLabel?.font = .boldSystemFont(ofSize: 21)
+        buttonLogin.titleLabel?.font = .boldSystemFont(ofSize: 19)
+        buttonLogin.setTitleColor(.white, for: .normal)
+        buttonLogin.backgroundColor = UIColor.systemBlue
+        buttonLogin.layer.cornerRadius = 5
+        buttonLogin.clipsToBounds = true
+        buttonLogin.layer.shadowColor = UIColor.black.cgColor
+        buttonLogin.layer.shadowOffset = CGSize(width: 0, height: 2)
+        buttonLogin.layer.shadowRadius = 4
+        buttonLogin.layer.shadowOpacity = 0.25
         buttonLogin.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(buttonLogin)
     }
     func setupButtonSignup(){
-        buttonSignup = UIButton(type: .system)
+        buttonSignup = UIButton()
         buttonSignup.setTitle("Sign Up", for: .normal)
+        buttonSignup.titleLabel?.font = .systemFont(ofSize: 16)
+        buttonSignup.setTitleColor(.white, for: .normal)
+        buttonSignup.backgroundColor = UIColor.systemBlue
+        buttonSignup.layer.cornerRadius = 3
+        buttonSignup.clipsToBounds = true
         buttonSignup.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(buttonSignup)
     }
+    
     func initConstraints(){
         NSLayoutConstraint.activate([
             titleNotes.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor,constant: 32),
@@ -107,14 +121,18 @@ class LoginCoverScreen: UIView {
             textFieldPassword.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor,constant: 20),
             textFieldPassword.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor,constant: -20),
             
-            buttonLogin.topAnchor.constraint(equalTo: textFieldPassword.bottomAnchor,constant: 43),
+            buttonLogin.topAnchor.constraint(equalTo: textFieldPassword.bottomAnchor,constant: 50),
             buttonLogin.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
+            buttonLogin.widthAnchor.constraint(equalToConstant: 200),
+            buttonLogin.heightAnchor.constraint(equalToConstant: 45),
             
-            registerLabel.topAnchor.constraint(equalTo: buttonLogin.bottomAnchor,constant: 52),
+            registerLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor,constant: -30),
             registerLabel.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor,constant: 58),
             
-            buttonSignup.topAnchor.constraint(equalTo: buttonLogin.bottomAnchor,constant: 46),
-            buttonSignup.leadingAnchor.constraint(equalTo: registerLabel.trailingAnchor,constant: 15)
+            buttonSignup.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor,constant: -38),
+            buttonSignup.leadingAnchor.constraint(equalTo: registerLabel.trailingAnchor,constant: 15),
+            buttonSignup.widthAnchor.constraint(equalToConstant: 100),
+            buttonSignup.heightAnchor.constraint(equalToConstant: 40),
             
         ])
     }
