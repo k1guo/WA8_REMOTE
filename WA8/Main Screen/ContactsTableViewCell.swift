@@ -12,7 +12,7 @@ class ContactsTableViewCell: UITableViewCell {
     var wrapperCellView: UIView!
     var labelName: UILabel!
     var labelEmail: UILabel!
-
+    var contactPhoto: UIImageView!
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?){
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -20,6 +20,7 @@ class ContactsTableViewCell: UITableViewCell {
         setupWrapperCellView()
         setupLabelName()
         setupLabelEmail()
+        setupContactPhoto()
         
         initConstraints()
     }
@@ -29,17 +30,21 @@ class ContactsTableViewCell: UITableViewCell {
     }
     
     func setupWrapperCellView(){
-        wrapperCellView = UITableViewCell()
-        
-        //working with the shadows and colors...
-        wrapperCellView.backgroundColor = .white
-        wrapperCellView.layer.cornerRadius = 6.0
-        wrapperCellView.layer.shadowColor = UIColor.gray.cgColor
-        wrapperCellView.layer.shadowOffset = .zero
-        wrapperCellView.layer.shadowRadius = 4.0
-        wrapperCellView.layer.shadowOpacity = 0.4
-        wrapperCellView.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(wrapperCellView)
+        wrapperCellView = UIView() // 应该是 UIView 而不是 UITableViewCell
+
+            // 设定背景和颜色
+            wrapperCellView.backgroundColor = UIColor.systemBackground // 适应暗模式和亮模式
+            wrapperCellView.layer.cornerRadius = 10.0 // 微信和 WhatsApp 风格通常使用轻微的圆角
+
+            // 设置阴影 - 根据您的设计需求，您可以选择保留或移除阴影
+            // 如果想要更扁平化的风格，可以考虑移除阴影
+            wrapperCellView.layer.shadowColor = UIColor.gray.cgColor
+            wrapperCellView.layer.shadowOffset = CGSize(width: 0, height: 2) // 微调阴影的偏移
+            wrapperCellView.layer.shadowRadius = 4.0
+            wrapperCellView.layer.shadowOpacity = 0.2 // 降低阴影的透明度以使其更加微妙
+
+            wrapperCellView.translatesAutoresizingMaskIntoConstraints = false
+            self.addSubview(wrapperCellView)
     }
     
     func setupLabelName(){
@@ -56,15 +61,29 @@ class ContactsTableViewCell: UITableViewCell {
         wrapperCellView.addSubview(labelEmail)
     }
     
+    func setupContactPhoto(){
+        contactPhoto = UIImageView()
+        contactPhoto.contentMode = .scaleAspectFill // 设置内容模式
+        contactPhoto.layer.cornerRadius = 5 // 设置圆角为 10 像素
+        contactPhoto.clipsToBounds = true
+        contactPhoto.translatesAutoresizingMaskIntoConstraints = false
+        wrapperCellView.addSubview(contactPhoto)
+    }
+    
     func initConstraints(){
         NSLayoutConstraint.activate([
-            wrapperCellView.topAnchor.constraint(equalTo: self.topAnchor,constant: 10),
-            wrapperCellView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
-            wrapperCellView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10),
-            wrapperCellView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
+            wrapperCellView.topAnchor.constraint(equalTo: self.topAnchor),
+            wrapperCellView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            wrapperCellView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            wrapperCellView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            
+            contactPhoto.leadingAnchor.constraint(equalTo: wrapperCellView.leadingAnchor, constant: 8),
+            contactPhoto.centerYAnchor.constraint(equalTo: wrapperCellView.centerYAnchor),
+            contactPhoto.widthAnchor.constraint(equalToConstant: 50),
+            contactPhoto.heightAnchor.constraint(equalToConstant: 50),
             
             labelName.topAnchor.constraint(equalTo: wrapperCellView.topAnchor, constant: 12),
-            labelName.leadingAnchor.constraint(equalTo: wrapperCellView.leadingAnchor, constant: 16),
+            labelName.leadingAnchor.constraint(equalTo: contactPhoto.trailingAnchor, constant: 16),
             labelName.heightAnchor.constraint(equalToConstant: 20),
             labelName.widthAnchor.constraint(lessThanOrEqualTo: wrapperCellView.widthAnchor),
             

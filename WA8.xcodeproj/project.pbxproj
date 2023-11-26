@@ -32,6 +32,7 @@
 		BC06648D2B055DC600B1F296 /* Configs.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC06648C2B055DC600B1F296 /* Configs.swift */; };
 		BC2761472B09D30D00218308 /* ChatData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2761462B09D30D00218308 /* ChatData.swift */; };
 		BC27614E2B0C26B200218308 /* ChatDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC27614D2B0C26B200218308 /* ChatDetailTableViewCell.swift */; };
+		BC3633D62B13D3620094B048 /* MainFirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3633D52B13D3620094B048 /* MainFirebaseManager.swift */; };
 		BC4755A52B0D71DF00516E32 /* PhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4755A42B0D71DF00516E32 /* PhotoManager.swift */; };
 		BC4755AD2B1139C600516E32 /* ImageViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4755AC2B1139C600516E32 /* ImageViewUtils.swift */; };
 		BC4755B02B11520400516E32 /* EditProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4755AF2B11520400516E32 /* EditProfile.swift */; };
@@ -67,6 +68,7 @@
 		BC06648C2B055DC600B1F296 /* Configs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configs.swift; sourceTree = "<group>"; };
 		BC2761462B09D30D00218308 /* ChatData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatData.swift; sourceTree = "<group>"; };
 		BC27614D2B0C26B200218308 /* ChatDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatDetailTableViewCell.swift; sourceTree = "<group>"; };
+		BC3633D52B13D3620094B048 /* MainFirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFirebaseManager.swift; sourceTree = "<group>"; };
 		BC4755A42B0D71DF00516E32 /* PhotoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoManager.swift; sourceTree = "<group>"; };
 		BC4755AC2B1139C600516E32 /* ImageViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewUtils.swift; sourceTree = "<group>"; };
 		BC4755AF2B11520400516E32 /* EditProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfile.swift; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 			children = (
 				BC98EAEC2B080942001D5738 /* MainScreen.swift */,
 				BC06647D2B0550B200B1F296 /* ContactsTableViewCell.swift */,
+				BC3633D52B13D3620094B048 /* MainFirebaseManager.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 				2AFB9D382B0BF09300E5E7AB /* ViewController.swift in Sources */,
 				BC4755B42B116BE600516E32 /* EditProfileFirebaseManager.swift in Sources */,
 				BC4755AD2B1139C600516E32 /* ImageViewUtils.swift in Sources */,
+				BC3633D62B13D3620094B048 /* MainFirebaseManager.swift in Sources */,
 				2AFB9D3A2B0BF09300E5E7AB /* LoginCoverScreen.swift in Sources */,
 				BC4755B22B11523000516E32 /* EditProfileController.swift in Sources */,
 				2AFB9D3C2B0BF20500E5E7AB /* LoginProgressIndicatorManager.swift in Sources */,

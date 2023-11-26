@@ -39,7 +39,7 @@ class ChatDetailController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = " chat message page"
+        title = otherName
         
         print(chatSession)
         

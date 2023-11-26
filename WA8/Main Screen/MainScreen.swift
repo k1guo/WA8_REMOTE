@@ -16,6 +16,7 @@ class MainScreen: UIView {
         // Drawing code
     }
     */
+    var searchBar: UISearchBar!
     var labelText: UILabel!
     var currentUserPic: UIImageView!
     var tableViewChatLists: UITableView!
@@ -25,11 +26,19 @@ class MainScreen: UIView {
         super.init(frame: frame)
         self.backgroundColor = .white
 
+        setupSearchBar()
         setupLabelText()
         setupTableViewNotes()
         setupCurrentUserPic()
         setupFloatingButtonSetting()
         initConstraints()
+    }
+    
+    func setupSearchBar(){
+        searchBar = UISearchBar()
+        searchBar.placeholder = "Search..."
+        searchBar.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(searchBar)
     }
     
     func setupLabelText(){
@@ -84,7 +93,11 @@ class MainScreen: UIView {
             labelText.bottomAnchor.constraint(equalTo: currentUserPic.bottomAnchor),
             labelText.leadingAnchor.constraint(equalTo: currentUserPic.trailingAnchor, constant: 8),
             
-            tableViewChatLists.topAnchor.constraint(equalTo: labelText.bottomAnchor, constant: 8),
+            searchBar.topAnchor.constraint(equalTo: currentUserPic.bottomAnchor,constant: 8),
+            searchBar.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            searchBar.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            
+            tableViewChatLists.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 8),
             tableViewChatLists.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             tableViewChatLists.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             tableViewChatLists.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor,constant: -8),

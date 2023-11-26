@@ -19,6 +19,8 @@ extension RegisterViewController{
                if let jpegData = image.jpegData(compressionQuality: 80){
                    let storageRef = storage.reference()
                    let imagesRepo = storageRef.child("imagesUsers")
+                   
+                   //MARK: path in storage for this image
                    let imageRef = imagesRepo.child("\(NSUUID().uuidString).jpg")
                    
                    let uploadTask = imageRef.putData(jpegData, completion: {(metadata, error) in
@@ -74,10 +76,16 @@ extension RegisterViewController{
                 self.showAlertText(text: "This email address has been used or other error occurred!")
             } else if let uid = result?.user.uid {
                 // 用户创建成功
-                let contact = Contact(name: name, email: email, userId: uid)
+                let userProfilePath = photoURL?.absoluteString ?? ""
+                let contact = Contact(name: name, email: email, userId: uid, userProfilePath: userProfilePath)
                 let collectionContacts = self.database.collection("users").document(name)
                 do {
-                    try collectionContacts.setData(["email": email, "name": name, "userId": uid]) { error in
+                    try collectionContacts.setData([
+                        "email": email,
+                        "name": name,
+                        "userId": uid,
+                        "userProfilePath": userProfilePath
+                    ]) { error in
                         if let error = error {
                             print(error)
                             self.showAlertText(text: "Error adding document!")

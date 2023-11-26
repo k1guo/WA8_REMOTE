@@ -42,7 +42,7 @@ class MainViewController: UIViewController {
         mainScreen.tableViewChatLists.dataSource = self
         
         mainScreen.tableViewChatLists.separatorStyle = .none
-        
+
         view.bringSubviewToFront(mainScreen.floatingButtonSetting)
         
         mainScreen.floatingButtonSetting.addTarget(self, action: #selector(settingButtonTapped), for: .touchUpInside)
@@ -68,6 +68,7 @@ class MainViewController: UIViewController {
         print("User is logged in.")
         self.currentUser = user
         mainScreen.labelText.text = "Let's Chat!"
+        // MARK:  load current user's profile photo
         if let url = self.currentUser?.photoURL{
             self.mainScreen.currentUserPic.loadRemoteImage(from: url)
         }
@@ -121,33 +122,7 @@ class MainViewController: UIViewController {
         }
     }
 
-    func getAndReloadMessage(){
-        let refDoc = self.database.collection("chats").document(self.chatIdentifier!).collection("chatDetail")
-        refDoc.getDocuments { (querySnapshot, error) in
-            if let error = error {
-                // error
-                print("Error getting documents: \(error)")
-            } else {
-                //MARK: else create a new database for new chat session
-                print("No chats found in chatDetail collection.")
-    
-                self.database.collection("chats").document(self.chatIdentifier!).setData([:]) { error in
-                    if let error = error {
-                        print("Error creating new chat session: \(error)")
-                    } else {
-                        print("New chat session created successfully.")
-                    }
-            }
-        }
-    }
-    
-        //MARK: pop to new screen
-        let chatScreen = ChatDetailController()
-        chatScreen.chatIdentifier=self.chatIdentifier
-        chatScreen.currentUser = self.currentUser
-        chatScreen.otherName = self.otherName
-        self.navigationController?.pushViewController(chatScreen, animated: true)
-    }
+
     
     @objc func onLogOutBarButtonTapped(){
         let logoutAlert = UIAlertController(title: "Logging out!", message: "Are you sure want to log out?",
@@ -181,7 +156,14 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Configs.tableViewContactsID, for: indexPath) as! ContactsTableViewCell
-        cell.labelName.text = contactsList[indexPath.row].name
+        let contact = contactsList[indexPath.row]
+        cell.labelName.text = contact.name
+       
+        if let url = URL(string: contact.userProfilePath) {
+            cell.contactPhoto.loadRemoteImage(from: url)
+        } else {
+            cell.contactPhoto.image = UIImage(systemName: "person.circle")
+        }
         return cell
     }
     
